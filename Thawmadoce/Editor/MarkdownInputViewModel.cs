@@ -23,7 +23,7 @@ namespace Thawmadoce.Editor
             get { return _markdownText; }
             set
             {
-                _timer.Change(1000, int.MaxValue);
+                _timer.Change(300, int.MaxValue);
                 _markdownText = value;
                 NotifyOfPropertyChange(()=>MarkdownText);
             }

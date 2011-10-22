@@ -80,8 +80,8 @@
     <Compile Include="Bootstrapping\HandlerRegistrationOnViewModels.cs" />
     <Compile Include="Bootstrapping\IStartupTask.cs" />
     <Compile Include="Bootstrapping\WireUpSagasToMessaging.cs" />
-    <Compile Include="Editor\MarkdownEditorView.xaml.cs">
-      <DependentUpon>MarkdownEditorView.xaml</DependentUpon>
+    <Compile Include="Editor\MarkdownEditor.xaml.cs">
+      <DependentUpon>MarkdownEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Editor\MarkdownEditorViewModel.cs" />
     <Compile Include="Editor\MarkdownInputViewModel.cs" />
@@ -116,6 +116,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapping\AppBootstrapper.cs" />
+    <Page Include="Editor\MarkdownEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Editor\MarkdownEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

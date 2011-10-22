@@ -8,6 +8,9 @@
                 <ResourceDictionary>
                     <Thawmadoce:AppBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
+                <ResourceDictionary>
+                    <BooleanToVisibilityConverter x:Key="BoolToVis" />
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

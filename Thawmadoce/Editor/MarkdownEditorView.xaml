@@ -8,9 +8,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition  Height="*"/>
-            <RowDefinition  Height="*"/>
         </Grid.RowDefinitions>
-        <ContentControl x:Name="Editor" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-        <ContentControl x:Name="Preview" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <ContentControl x:Name="Editor"
+                        Grid.Row="1" 
+                        VerticalAlignment="Stretch" 
+                        HorizontalAlignment="Stretch"
+                        Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.EditorVisible, Converter={StaticResource BoolToVis}}" />
+        <ContentControl x:Name="Preview" 
+                        Grid.Row="1" 
+                        VerticalAlignment="Stretch" 
+                        HorizontalAlignment="Stretch"
+                        Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Path=DataContext.PreviewVisible, Converter={StaticResource BoolToVis}}" />
     </Grid>
 </UserControl>
