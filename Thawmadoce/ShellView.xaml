@@ -1,0 +1,11 @@
+﻿<Window x:Class="Thawmadoce.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<StackPanel>
+		<TextBlock Text="Hello Caliburn Micro!"	FontSize="20" />
+        <Button x:Name="StartExample">Start Example</Button>
+        <ContentControl x:Name="ActiveItem" />
+    </StackPanel>
+
+</Window>
