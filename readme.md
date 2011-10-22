@@ -1,6 +1,6 @@
 # Thawmadoce
  
-*Th*e *aw*esome *ma*rk*do*wn *ce*ntrifuge
+__Th__e __aw__esome __ma__rk__do__wn __ce__ntrifuge
 
 (Please speak the 'c' like the 'cc' in 'Capuccino')
 
