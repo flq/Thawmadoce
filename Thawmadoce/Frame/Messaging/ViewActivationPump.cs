@@ -1,8 +1,7 @@
 ﻿using MemBus.Publishing;
 using StructureMap;
-using Thawmadoce.Frame.Messaging;
 
-namespace Thawmadoce.Frame
+namespace Thawmadoce.Frame.Messaging
 {
     public class ViewActivationPump : IPublishPipelineMember
     {

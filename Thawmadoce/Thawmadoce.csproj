@@ -38,9 +38,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>thawmadoce.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.1.2.0\lib\Net40\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
     <Reference Include="MemBus">
       <HintPath>..\packages\MemBus.1.2.0\lib\net40\MemBus.dll</HintPath>
@@ -49,7 +55,6 @@
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Reactive, Version=1.0.10621.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,23 +79,35 @@
     <Compile Include="Bootstrapping\BootstrapRegistry.cs" />
     <Compile Include="Bootstrapping\HandlerRegistrationOnViewModels.cs" />
     <Compile Include="Bootstrapping\IStartupTask.cs" />
-    <Compile Include="Example\ExampleViewModel.cs" />
+    <Compile Include="Bootstrapping\WireUpSagasToMessaging.cs" />
+    <Compile Include="Editor\MarkdownEditorView.xaml.cs">
+      <DependentUpon>MarkdownEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\MarkdownEditorViewModel.cs" />
+    <Compile Include="Editor\MarkdownInputViewModel.cs" />
+    <Compile Include="Editor\NewHtmlMsg.cs" />
+    <Compile Include="Editor\NewMarkdownTaskMsg.cs" />
+    <Compile Include="Editor\PreviewViewModel.cs" />
+    <Compile Include="Extensibility\ISaga.cs" />
     <Compile Include="Frame\AbstractViewModel.cs" />
     <Compile Include="Frame\DataTemplateChoice.cs" />
-    <Compile Include="Frame\DictionaryConverter.cs" />
+    <Compile Include="Frame\Converters\DictionaryConverter.cs" />
     <Compile Include="Frame\Extensions\Observable.cs" />
     <Compile Include="Frame\Extensions\ObservableCollection.cs" />
     <Compile Include="Frame\Extensions\Useful.cs" />
     <Compile Include="Frame\Extensions\ViewModelExtensions.cs" />
+    <Compile Include="Frame\GestureService.cs" />
     <Compile Include="Frame\IDispatchServices.cs" />
     <Compile Include="Frame\IGestureService.cs" />
-    <Compile Include="Frame\Messaging\ActivateViewModelMessagesGoThroughViewActivationPump.cs" />
+    <Compile Include="Frame\Messaging\PassViewModelMessagesThroughViewActivation.cs" />
     <Compile Include="Frame\Messaging\ActivateViewModelMsg.cs" />
-    <Compile Include="Frame\MultiplicatorConverter.cs" />
-    <Compile Include="Frame\PathToImageSourceConverter.cs" />
+    <Compile Include="Frame\Converters\MultiplicatorConverter.cs" />
+    <Compile Include="Frame\Converters\PathToImageSourceConverter.cs" />
+    <Compile Include="Frame\Messaging\TaskMsgIsHandledOutsideUi.cs" />
+    <Compile Include="Frame\Messaging\UiMsgMustBeDispatched.cs" />
     <Compile Include="Frame\RelayCommand.cs" />
     <Compile Include="Frame\StructuremapBridge.cs" />
-    <Compile Include="Frame\ViewActivationPump.cs" />
+    <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
     <Compile Include="Frame\WpfDispatchService.cs" />
     <Compile Include="Frame\XamlStatic.cs" />
     <Compile Include="ShellViewModel.cs" />
@@ -99,7 +116,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapping\AppBootstrapper.cs" />
-    <Page Include="Example\ExampleView.xaml">
+    <Page Include="Editor\MarkdownEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editor\MarkdownInputView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Editor\PreviewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,7 +159,9 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="thawmadoce.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

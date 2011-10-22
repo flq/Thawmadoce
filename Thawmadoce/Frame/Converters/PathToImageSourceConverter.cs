@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace KastoDialog.Frame.UI
+namespace Thawmadoce.Frame.Converters
 {
     public class PathToImageSourceConverter : IValueConverter
     {

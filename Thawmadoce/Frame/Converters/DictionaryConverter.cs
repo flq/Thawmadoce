@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace Thawmadoce.Frame
+namespace Thawmadoce.Frame.Converters
 {
     /// <summary>
     /// Example usage:

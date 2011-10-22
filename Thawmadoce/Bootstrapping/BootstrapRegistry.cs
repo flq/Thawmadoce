@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
@@ -7,6 +8,7 @@ using MemBus.Configurators;
 using MemBus.Subscribing;
 using StructureMap;
 using StructureMap.Configuration.DSL;
+using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Messaging;
 
@@ -18,6 +20,7 @@ namespace Thawmadoce.Bootstrapping
         {
             ForSingletonOf<IWindowManager>().Use(new WindowManager());
             ForSingletonOf<ShellViewModel>().Use<ShellViewModel>();
+            For<IGestureService>().Use(ctx => ctx.GetInstance<ShellViewModel>().GestureService);
             Forward<ShellViewModel,IGestureService>();
 
             For<Application>().Use(Application.Current);
@@ -32,7 +35,10 @@ namespace Thawmadoce.Bootstrapping
             Scan(s =>
             {
                 s.TheCallingAssembly();
+                if (Directory.Exists("plugins")) //StructureMap bails out if it doesn't exist
+                  s.AssembliesFromPath("plugins");
                 s.AddAllTypesOf<IStartupTask>();
+                s.AddAllTypesOf<ISaga>();
                 s.Convention<HandlerRegistrationOnViewModels>();
             });
 
@@ -45,8 +51,10 @@ namespace Thawmadoce.Bootstrapping
 
             return BusSetup.StartWith<Conservative>(
                 new IoCSupport(new StructuremapBridge(() => ObjectFactory.Container)))
-                .Apply<FlexibleSubscribeAdapter>(c => c.ByMethodName("Handle").ByInterface(typeof(IHandles<>)))
-                .Apply<ActivateViewModelMessagesGoThroughViewActivationPump>()
+                .Apply<FlexibleSubscribeAdapter>(c => c.ByMethodName("Handle"))
+                .Apply<PassViewModelMessagesThroughViewActivation>()
+                .Apply<UiMsgMustBeDispatched>()
+                .Apply<TaskMsgIsHandledOutsideUi>()
                 .Construct();
         }
     }

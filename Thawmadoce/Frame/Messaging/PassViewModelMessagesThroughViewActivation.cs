@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace Thawmadoce.Frame.Messaging
 {
-    internal class ActivateViewModelMessagesGoThroughViewActivationPump : ISetup<IConfigurableBus>
+    internal class PassViewModelMessagesThroughViewActivation : ISetup<IConfigurableBus>
     {
         public void Accept(IConfigurableBus setup)
         {
