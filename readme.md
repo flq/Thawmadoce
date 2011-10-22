@@ -2,7 +2,11 @@
  
 *Th*e *aw*esome *ma*rk*do*wn *ce*ntrifuge
 
+(Please speak the 'c' like the 'cc' in 'Capuccino')
+
 A project that puts a markdown editor at its center and lets you plug shit around it.
+V1 will be insanely crude and will not stand against the previous sentence.
+I wouldn't be the first creating vapourware and please consider that Duke Nukem actually got a release.
 
 
 ## Licensing
