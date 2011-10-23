@@ -39,6 +39,7 @@ namespace Thawmadoce.Bootstrapping
                   s.AssembliesFromPath("plugins");
                 s.AddAllTypesOf<IStartupTask>();
                 s.AddAllTypesOf<ISaga>();
+                s.AddAllTypesOf<ISelectionPlugin>();
                 s.Convention<HandlerRegistrationOnViewModels>();
             });
 

@@ -1,12 +1,185 @@
-﻿<UserControl x:Class="Thawmadoce.Editor.MarkdownInputView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Editor="clr-namespace:Thawmadoce.Editor" mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" >
-    <Editor:MarkdownEditor 
-        x:Name="MarkdownText" 
-        TextWrapping="Wrap" 
-        AcceptsReturn="True" 
-        AcceptsTab="True" />
+﻿<UserControl
+    x:Class="Thawmadoce.Editor.MarkdownInputView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Editor="clr-namespace:Thawmadoce.Editor" xmlns:Extensibility="clr-namespace:Thawmadoce.Extensibility" Background="LightBlue">
+    <UserControl.Resources>
+        <Storyboard x:Key="MoveDownEditor">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Duration="0:0:0.3">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="2" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.03">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="5" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.05">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="7" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.075">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="9" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="10" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.125">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="12" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.15">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="15" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.175">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="18" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="20" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.225">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="22" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.25">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="25" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.275">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="28" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="30" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MoveUpEditor">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Duration="0:0:0.3">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="30" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.03">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="27" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.05">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="25" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.075">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="23" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="20" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.125">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="17" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.15">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="15" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.175">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="13" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="10" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.225">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="8" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.25">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="5" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.275">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="3" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Thickness Top="2" Bottom="2" Left="2" Right="2" />
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Style TargetType="{x:Type Editor:MarkdownEditor}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ShowSelectionBar, Mode=OneWay}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource MoveDownEditor}" />
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource MoveUpEditor}" />
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel x:Name="SelectionBar"
+                    Orientation="Horizontal" 
+                    Height="30"
+                    VerticalAlignment="Top" 
+                    Background="LightBlue" Visibility="{Binding ShowSelectionBar, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+            <ItemsControl ItemsSource="{Binding SelectionCommands, Mode=OneWay}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type Extensibility:SelectionCommand}">
+                        <Button Margin="3" Command="{Binding Command, Mode=OneWay}" Content="{Binding CommandText, Mode=OneWay}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+      <Editor:MarkdownEditor 
+          x:Name="MarkdownText"
+          FontFamily="Consolas" FontSize="16"
+          Margin="2,2,2,2"
+          CurrentSelection="{Binding CurrentSelection, Mode=TwoWay}" 
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch" />
+    </Grid>
 </UserControl>
