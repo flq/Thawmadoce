@@ -5,19 +5,26 @@ namespace Thawmadoce.Editor.SelectionCommands
 {
     public class EncloseSelectionInSomething : SelectionCommand
     {
-        private readonly string _enclosingString;
+        private readonly string _prefixString;
+        private readonly string _postFixString;
 
-        public EncloseSelectionInSomething(string selectionText, string enclosingString) : base(selectionText)
+        public EncloseSelectionInSomething(string selectionText, string enclosingString) : this(selectionText, enclosingString, enclosingString)
         {
-            _enclosingString = enclosingString;
+            
+        }
+
+        public EncloseSelectionInSomething(string selectionText, string prefixString, string postFixString) : base(selectionText)
+        {
+            _prefixString = prefixString;
+            _postFixString = postFixString;
         }
 
         protected override string Execute()
         {
             var sb = new StringBuilder();
-            sb.Append(_enclosingString);
+            sb.Append(_prefixString);
             sb.Append(SelectionText);
-            sb.Append(_enclosingString);
+            sb.Append(_postFixString);
             return sb.ToString();
         }
     }

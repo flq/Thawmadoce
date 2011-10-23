@@ -13,17 +13,21 @@ namespace Thawmadoce.Editor
     public class MarkdownInputViewModel : AbstractViewModel
     {
         private readonly IPublisher _publisher;
+        private readonly Func<IGestureService> _gestureSvcFactory;
+        private readonly Timer _typingTimer;
+        private object _commandKeysScope;
         private readonly ISelectionPlugin[] _selectionPlugins;
+
+        // XAML-related state
         private readonly ObservableCollection<SelectionCommand> _selectionCommands = new ObservableCollection<SelectionCommand>();
         private string _markdownText;
-
-        private readonly Timer _typingTimer;
         private string _currentSelection;
         private bool _showSelectionBar;
 
-        public MarkdownInputViewModel(IPublisher publisher, ISelectionPlugin[] selectionPlugins)
+        public MarkdownInputViewModel(IPublisher publisher, Func<IGestureService> gestureSvcFactory,  ISelectionPlugin[] selectionPlugins)
         {
             _publisher = publisher;
+            _gestureSvcFactory = gestureSvcFactory;
             _selectionPlugins = selectionPlugins;
             _typingTimer = new Timer(TimerCallback);
         }
@@ -75,11 +79,13 @@ namespace Thawmadoce.Editor
             var relevantTextSelected = !string.IsNullOrEmpty(_currentSelection);
             if (relevantTextSelected)
             {
-                SelectionCommands.ClearAndAddRange(_selectionPlugins.SelectMany(p => p.GetCommands(_currentSelection)));
-                SelectionCommands.ForEach(
-                    cmd => cmd.As<ISelectionCommandWireup>(
-                        w => w.AfterModificationCallback(AfterCommandModifiedSelection)
-                    )
+                _commandKeysScope = new object();
+
+                SelectionCommands.ClearAndAddRange(
+                    _selectionPlugins
+                      .SelectMany(p => p.GetCommands(_currentSelection))
+                      .Pipeline(cmd => cmd.As<ISelectionCommandWireup>(w => w.AfterModificationCallback(AfterCommandModifiedSelection)))
+                      .Pipeline(cmd => { if (cmd.KeyCombination != KeyCombo.Default) _gestureSvcFactory().AddKeyBinding(cmd.KeyBinding, _commandKeysScope); })
                 );
                 ShowSelectionBar = true;
             }
@@ -93,6 +99,8 @@ namespace Thawmadoce.Editor
         private void AfterCommandModifiedSelection(string newText)
         {
             CurrentSelection = newText;
+            _gestureSvcFactory().RemoveInputBindings(_commandKeysScope);
+            _commandKeysScope = null;
             SelectionCommands.Clear();
             ShowSelectionBar = false;
         }

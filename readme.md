@@ -26,6 +26,11 @@ Licensed under the [GPL](http://www.gnu.org/copyleft/gpl.html)
 * Rx
 * Markdownsharp
 
+Icons have been used by
+
+* [the oxygen team](http://www.iconarchive.com/artist/oxygen-icons.org.html) (associated with KDE)
+* [deleket](http://www.iconarchive.com/artist/deleket.html)
+
 ## Where's the packages folder?
 
 This project is checked in without the actual binaries of the required Nuget-packages. This

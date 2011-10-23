@@ -107,6 +107,7 @@ namespace Thawmadoce.Editor
 
         private void HandlePreviewKeyDown(object sender, KeyEventArgs e)
         {
+            Debug.WriteLine(e.Key);
             if (ControlPressed(e))
                 _currentModKeys |= ModKeys.Ctrl;
             if (ShiftPressed(e))
