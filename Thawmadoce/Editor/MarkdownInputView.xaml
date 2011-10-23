@@ -185,6 +185,6 @@
           Margin="2,2,2,2"
           CurrentSelection="{Binding CurrentSelection, Mode=TwoWay}" 
           HorizontalAlignment="Stretch"
-          VerticalAlignment="Stretch" />
+          VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" />
     </Grid>
 </UserControl>

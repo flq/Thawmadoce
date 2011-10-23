@@ -4,6 +4,7 @@ using Caliburn.Micro;
 using Thawmadoce.Editor;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Extensions;
+using Thawmadoce.MainApp;
 
 namespace Thawmadoce {
     
@@ -13,7 +14,7 @@ namespace Thawmadoce {
         private string _title = "The awesome markdown centrifuge";
 
         public MarkdownEditorViewModel Editor { get; set; }
-
+        public AppItemsViewModel AppItems { get; set; }
 
         public IGestureService GestureService
         {

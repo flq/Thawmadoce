@@ -6,16 +6,27 @@ namespace Thawmadoce.Frame.Converters
 {
     public class MultiplicatorConverter : IValueConverter
     {
-        public int Factor { get; set; }
+        private int _factorInt;
+        private double _factorDouble;
+
+        public int Factor
+        {
+            get { return _factorInt; }
+            set
+            {
+                _factorInt = value;
+                _factorDouble = System.Convert.ToDouble(value);
+            }
+        }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var multiplicator = Factor != 0 ? Factor : 1;
-            if (!(value is int))
-                return 0;
+            if (value is int)
+                return ((int)value) * _factorInt;
+            if (value is double)
+                return ((double)value) * _factorDouble;
 
-            var conversion = ((int)value) * multiplicator;
-            return conversion;
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

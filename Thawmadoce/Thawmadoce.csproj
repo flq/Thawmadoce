@@ -117,6 +117,10 @@
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
     <Compile Include="Frame\WpfDispatchService.cs" />
     <Compile Include="Frame\XamlStatic.cs" />
+    <Compile Include="MainApp\AppItemsView.xaml.cs">
+      <DependentUpon>AppItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainApp\AppItemsViewModel.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -136,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Editor\PreviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainApp\AppItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,17 +182,20 @@
     <Resource Include="thawmadoce.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Media\list_numbered.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Media\format_text_bold.png" />
     <Resource Include="Media\format_text_italic.png" />
     <Resource Include="Media\format_text_strikethrough.png" />
     <Resource Include="Media\format_text_subscript.png" />
     <Resource Include="Media\format_text_superscript.png" />
     <Resource Include="Media\format_text_underline.png" />
-    <Resource Include="Media\list.png" />
     <Resource Include="Media\quote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\format_list_ordered.png" />
+    <Resource Include="Media\format_list_unordered.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\system.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

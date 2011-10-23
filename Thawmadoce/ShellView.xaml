@@ -1,12 +1,11 @@
 ﻿<Window x:Class="Thawmadoce.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Icon="thawmadoce.ico">
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Icon="thawmadoce.ico">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition  Height="*"/>
         </Grid.RowDefinitions>
         <ContentControl x:Name="Editor" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <ContentControl x:Name="AppItems" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,2,100,0" />
     </Grid>
 </Window>

@@ -54,13 +54,13 @@ namespace Thawmadoce.Editor.SelectionCommands
             yield return new PrependLines(selectionText, "1. ")
                              {
                                  CommandText = "Numbered list",
-                                 CommandIcon = "/Thawmadoce;component/Media/list_numbered.png",
+                                 CommandIcon = "/Thawmadoce;component/Media/format_list_ordered.png",
                                  KeyCombination = new KeyCombo(Key.N, ModifierKeys.Control | ModifierKeys.Shift)
                              };
             yield return new PrependLines(selectionText, "* ")
                              {
                                  CommandText = "Unnumbered list",
-                                 CommandIcon = "/Thawmadoce;component/Media/list.png",
+                                 CommandIcon = "/Thawmadoce;component/Media/format_list_unordered.png",
                                  KeyCombination = new KeyCombo(Key.L, ModifierKeys.Control | ModifierKeys.Shift)
                              };
         }

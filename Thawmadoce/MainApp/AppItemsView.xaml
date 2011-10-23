@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Thawmadoce.MainApp.AppItemsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Converters="clr-namespace:Thawmadoce.Frame.Converters" mc:Ignorable="d">
+    <UserControl.Resources>
+        <Converters:MultiplicatorConverter Factor="-1" x:Key="ByMinusOne" />
+        <Storyboard x:Key="Open">
+            <!-- The fake from / to values of 1 will be set from code-behind as binding gives problems -->
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" From="1" To="0" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <ElasticEase Oscillations="3" Springiness="2" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="Close">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" From="0" To="1" Duration="0:0:0.3" />
+        </Storyboard>
+        <Style x:Key="PanelStyle" TargetType="{x:Type StackPanel}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsAppMenuOpen}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource Open}" />
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource Close}" />
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Style="{StaticResource PanelStyle}">
+        <StackPanel.RenderTransform>
+            <TranslateTransform Y="{Binding ElementName=AppItems, Path=ActualHeight, Converter={StaticResource ByMinusOne}}" />
+        </StackPanel.RenderTransform>
+        <ItemsControl x:Name="AppItems" BorderThickness="1,0,1,0" BorderBrush="Black">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel MaxWidth="200" Margin="5" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <TextBlock>One......................</TextBlock>
+            <TextBlock>Two......................</TextBlock>
+            <TextBlock>Three....................</TextBlock>
+            <TextBlock>Four....................</TextBlock>
+            <TextBlock>Five....................</TextBlock>
+            <TextBlock>Six....................</TextBlock>
+        </ItemsControl>
+        <Button Margin="0,1" x:Name="ToggleAppMenu">
+            <Image Height="28" Source="/Media/system.png" />
+        </Button>
+    </StackPanel>
+</UserControl>
