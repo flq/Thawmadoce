@@ -15,7 +15,11 @@
             </DoubleAnimation>
         </Storyboard>
         <Storyboard x:Key="Close">
-            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" From="0" To="1" Duration="0:0:0.3" />
+            <DoubleAnimation 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" 
+                From="0" To="1" 
+                DecelerationRatio="0.7"
+                Duration="0:0:0.5" />
         </Storyboard>
         <Style x:Key="PanelStyle" TargetType="{x:Type StackPanel}">
             <Style.Triggers>

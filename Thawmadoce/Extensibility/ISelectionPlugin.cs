@@ -9,6 +9,6 @@ namespace Thawmadoce.Extensibility
     /// </summary>
     public interface ISelectionPlugin
     {
-        IEnumerable<SelectionCommand> GetCommands(string selectionText);
+        IEnumerable<IVisibleCommand> GetCommands(string selectionText);
     }
 }

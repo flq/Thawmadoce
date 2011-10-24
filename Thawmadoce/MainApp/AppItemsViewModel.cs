@@ -20,5 +20,10 @@ namespace Thawmadoce.MainApp
         {
             IsAppMenuOpen = !IsAppMenuOpen;
         }
+
+        public void Handle(ToggleAppMenuUiMsg msg)
+        {
+            ToggleAppMenu();
+        }
     }
 }

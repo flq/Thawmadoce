@@ -6,7 +6,7 @@ namespace Thawmadoce.Editor.SelectionCommands
 {
     public class StandardMarkdownCommands : ISelectionPlugin
     {
-        public IEnumerable<SelectionCommand> GetCommands(string selectionText)
+        public IEnumerable<IVisibleCommand> GetCommands(string selectionText)
         {
             yield return new EncloseSelectionInSomething(selectionText, "__")
                              {

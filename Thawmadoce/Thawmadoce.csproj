@@ -80,22 +80,27 @@
     <Compile Include="Bootstrapping\HandlerRegistrationOnViewModels.cs" />
     <Compile Include="Bootstrapping\IStartupTask.cs" />
     <Compile Include="Bootstrapping\WireUpSagasToMessaging.cs" />
+    <Compile Include="Editor\EditorKeyShortcuts.cs" />
     <Compile Include="Editor\MarkdownEditor.xaml.cs">
       <DependentUpon>MarkdownEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Editor\MarkdownEditorViewModel.cs" />
     <Compile Include="Editor\MarkdownInputViewModel.cs" />
-    <Compile Include="Editor\NewHtmlMsg.cs" />
-    <Compile Include="Editor\NewMarkdownTaskMsg.cs" />
+    <Compile Include="Editor\Messages\NewHtmlMsg.cs" />
+    <Compile Include="Editor\Messages\NewMarkdownTaskMsg.cs" />
+    <Compile Include="Editor\Messages\TogglePreviewUiMsg.cs" />
     <Compile Include="Editor\PreviewViewModel.cs" />
     <Compile Include="Editor\SelectionCommands\EncloseSelectionInSomething.cs" />
     <Compile Include="Editor\SelectionCommands\ISelectionCommandWireup.cs" />
     <Compile Include="Editor\SelectionCommands\PrependLines.cs" />
     <Compile Include="Editor\SelectionCommands\StandardMarkdownCommands.cs" />
+    <Compile Include="Extensibility\IKeyboardOnlyActions.cs" />
     <Compile Include="Extensibility\ISaga.cs" />
     <Compile Include="Extensibility\ISelectionPlugin.cs" />
+    <Compile Include="Extensibility\IVisibleCommand.cs" />
     <Compile Include="Extensibility\KeyCombo.cs" />
     <Compile Include="Extensibility\SelectionCommand.cs" />
+    <Compile Include="Extensibility\VisibleCommand.cs" />
     <Compile Include="Frame\AbstractViewModel.cs" />
     <Compile Include="Frame\DataTemplateChoice.cs" />
     <Compile Include="Frame\Converters\DictionaryConverter.cs" />
@@ -121,6 +126,8 @@
       <DependentUpon>AppItemsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainApp\AppItemsViewModel.cs" />
+    <Compile Include="MainApp\MainAppShortcuts.cs" />
+    <Compile Include="MainApp\ToggleAppMenuUiMsg.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -197,6 +204,7 @@
   <ItemGroup>
     <Resource Include="Media\system.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,7 +12,6 @@ namespace Thawmadoce.Editor
     {
 
         private readonly IPublisher _publisher;
-        private readonly Func<IGestureService> _gestureSvc;
         private readonly Markdown _markdown = new Markdown();
         private string _lastMarkdownText;
 
@@ -22,10 +21,9 @@ namespace Thawmadoce.Editor
         public bool EditorVisible { get; private set; }
         public bool PreviewVisible { get; private set; }
 
-        public MarkdownEditorViewModel(IPublisher publisher, Func<IGestureService> gestureSvc)
+        public MarkdownEditorViewModel(IPublisher publisher)
         {
             _publisher = publisher;
-            _gestureSvc = gestureSvc;
             EditorVisible = true;
         }
 
@@ -39,10 +37,9 @@ namespace Thawmadoce.Editor
         protected override void OnActivate()
         {
             this.ActivateAllChilds();
-            _gestureSvc().AddKeyBinding(new KeyBinding(new RelayCommand(SwitchEditorAndPreview), Key.Tab, ModifierKeys.Control), this);
         }
 
-        private void SwitchEditorAndPreview()
+        public void Handle(TogglePreviewUiMsg msg)
         {
             EditorVisible = !EditorVisible;
             PreviewVisible = !PreviewVisible;

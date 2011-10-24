@@ -19,7 +19,7 @@ namespace Thawmadoce.Editor
         private readonly ISelectionPlugin[] _selectionPlugins;
 
         // XAML-related state
-        private readonly ObservableCollection<SelectionCommand> _selectionCommands = new ObservableCollection<SelectionCommand>();
+        private readonly ObservableCollection<IVisibleCommand> _selectionCommands = new ObservableCollection<IVisibleCommand>();
         private string _markdownText;
         private string _currentSelection;
         private bool _showSelectionBar;
@@ -64,7 +64,7 @@ namespace Thawmadoce.Editor
             }
         }
 
-        public ObservableCollection<SelectionCommand> SelectionCommands
+        public ObservableCollection<IVisibleCommand> SelectionCommands
         {
             get { return _selectionCommands; }
         }
