@@ -143,6 +143,19 @@
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Style TargetType="{x:Type Editor:MarkdownEditor}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0" MappingMode="RelativeToBoundingBox">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="#FFDCECFF" Offset="0.85"/>
+                        <GradientStop Color="#FF537FB6" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="FontFamily" Value="Consolas" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Visible" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding ShowSelectionBar, Mode=OneWay}" Value="True">
                     <DataTrigger.EnterActions>
@@ -160,7 +173,8 @@
                     Orientation="Horizontal" 
                     Height="40"
                     VerticalAlignment="Top" 
-                    Background="LightBlue" Visibility="{Binding ShowSelectionBar, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                    Background="{StaticResource Blueback_Inverse}" 
+                    Visibility="{Binding ShowSelectionBar, Mode=OneWay, Converter={StaticResource BoolToVis}}">
             <ItemsControl ItemsSource="{Binding SelectionCommands, Mode=OneWay}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -169,7 +183,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type Extensibility:SelectionCommand}">
-                        <Button Margin="3" Command="{Binding Command, Mode=OneWay}" ToolTip="{Binding TooltipText, Mode=OneWay}">
+                        <Button Style="{StaticResource Button_VisibleCommand}" Height="38">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{Binding CommandIcon, Converter={StaticResource PathToImg}}" Margin="2" />
                                 <TextBlock Text="{Binding CommandText}" />
@@ -181,10 +195,9 @@
         </StackPanel>
       <Editor:MarkdownEditor 
           x:Name="MarkdownText"
-          FontFamily="Consolas" FontSize="16"
-          Margin="2,2,2,2"
           CurrentSelection="{Binding CurrentSelection, Mode=TwoWay}" 
+          Margin="2,2,2,2"
           HorizontalAlignment="Stretch"
-          VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" />
+          VerticalAlignment="Stretch" />
     </Grid>
 </UserControl>

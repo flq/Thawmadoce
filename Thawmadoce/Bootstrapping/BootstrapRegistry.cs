@@ -40,6 +40,7 @@ namespace Thawmadoce.Bootstrapping
                 s.AddAllTypesOf<IStartupTask>();
                 s.AddAllTypesOf<ISaga>();
                 s.AddAllTypesOf<ISelectionPlugin>();
+                s.AddAllTypesOf<IAppItemsPlugin>();
                 s.AddAllTypesOf<IKeyboardOnlyActions>();
                 s.Convention<HandlerRegistrationOnViewModels>();
             });

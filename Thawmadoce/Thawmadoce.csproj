@@ -94,12 +94,16 @@
     <Compile Include="Editor\SelectionCommands\ISelectionCommandWireup.cs" />
     <Compile Include="Editor\SelectionCommands\PrependLines.cs" />
     <Compile Include="Editor\SelectionCommands\StandardMarkdownCommands.cs" />
+    <Compile Include="Editor\SelectionCommands\ToCode.cs" />
+    <Compile Include="Extensibility\IAppItemsPlugin.cs" />
+    <Compile Include="Extensibility\IExecutedCallback.cs" />
     <Compile Include="Extensibility\IKeyboardOnlyActions.cs" />
     <Compile Include="Extensibility\ISaga.cs" />
     <Compile Include="Extensibility\ISelectionPlugin.cs" />
     <Compile Include="Extensibility\IVisibleCommand.cs" />
     <Compile Include="Extensibility\KeyCombo.cs" />
     <Compile Include="Extensibility\SelectionCommand.cs" />
+    <Compile Include="Extensibility\SendMessageAppItem.cs" />
     <Compile Include="Extensibility\VisibleCommand.cs" />
     <Compile Include="Frame\AbstractViewModel.cs" />
     <Compile Include="Frame\DataTemplateChoice.cs" />
@@ -126,14 +130,18 @@
       <DependentUpon>AppItemsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainApp\AppItemsViewModel.cs" />
+    <Compile Include="MainApp\FileOpsSaga.cs" />
     <Compile Include="MainApp\MainAppShortcuts.cs" />
-    <Compile Include="MainApp\ToggleAppMenuUiMsg.cs" />
+    <Compile Include="MainApp\Messages\OpenFileUiMsg.cs" />
+    <Compile Include="MainApp\Messages\SaveFileUiMsg.cs" />
+    <Compile Include="MainApp\Messages\ToggleAppMenuUiMsg.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapping\AppBootstrapper.cs" />
+    <Compile Include="MainApp\StandardAppItems.cs" />
     <Page Include="Editor\MarkdownEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Editor\PreviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainApp\AppItemsResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,7 +216,13 @@
   <ItemGroup>
     <Resource Include="Media\system.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Media\document_open.png" />
+    <Resource Include="Media\document_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\code-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

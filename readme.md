@@ -30,6 +30,7 @@ Icons have been used by
 
 * [the oxygen team](http://www.iconarchive.com/artist/oxygen-icons.org.html) (associated with KDE)
 * [deleket](http://www.iconarchive.com/artist/deleket.html)
+* [Farm Fresh Icons](http://www.iconarchive.com/show/farm-fresh-icons-by-fatcow.html)
 
 ## Where's the packages folder?
 

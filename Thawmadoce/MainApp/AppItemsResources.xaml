@@ -1,0 +1,97 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Converters="clr-namespace:Thawmadoce.Frame.Converters">
+    <Converters:MultiplicatorConverter Factor="-1" x:Key="ByMinusOne" />
+    <Storyboard x:Key="Open">
+        <!-- The fake from / to values of 1 will be set from code-behind as binding gives problems -->
+        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" From="1" To="0" Duration="0:0:0.3">
+            <DoubleAnimation.EasingFunction>
+                <ElasticEase Oscillations="3" Springiness="2" EasingMode="EaseOut" />
+            </DoubleAnimation.EasingFunction>
+        </DoubleAnimation>
+    </Storyboard>
+    <Storyboard x:Key="Close">
+        <DoubleAnimation 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" 
+                From="0" To="1" 
+                DecelerationRatio="0.7"
+                Duration="0:0:0.5" />
+    </Storyboard>
+    <Style x:Key="AppItemsPanel" TargetType="{x:Type StackPanel}">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="3" Opacity=".4" Direction="225" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsAppMenuOpen}" Value="True">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard Storyboard="{StaticResource Open}" />
+                </DataTrigger.EnterActions>
+                <DataTrigger.ExitActions>
+                    <BeginStoryboard Storyboard="{StaticResource Close}" />
+                </DataTrigger.ExitActions>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+   
+    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF5B61A5"/>
+    <Style x:Key="AppItemsButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{StaticResource Blueback}"/>
+        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="ToolTip" Value="Open the App Menu (Ctrl+Enter)" />
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Height" Value="43" />
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Chrome" 
+						 SnapsToDevicePixels ="true" 
+						 Background="{TemplateBinding Background}" 
+						 BorderThickness="1"
+						 CornerRadius="0,0,10,10"
+						 BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            Margin="{TemplateBinding Padding}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="AppItemGroup">
+        <StackPanel>
+            <ItemsControl ItemsSource="{Binding}" Margin="3">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Style="{StaticResource Button_VisibleCommand}" Height="50">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding CommandIcon, Converter={StaticResource PathToImg}}" Margin="2" />
+                                <TextBlock Text="{Binding CommandText}" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Border BorderThickness="1" Margin="5,0" BorderBrush="Black" />
+        </StackPanel>
+    </DataTemplate>
+
+</ResourceDictionary>

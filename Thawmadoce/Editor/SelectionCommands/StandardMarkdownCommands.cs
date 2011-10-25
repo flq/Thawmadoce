@@ -24,7 +24,7 @@ namespace Thawmadoce.Editor.SelectionCommands
                              {
                                  CommandText = "Subscript",
                                  CommandIcon = "/Thawmadoce;component/Media/format_text_subscript.png",
-                                 KeyCombination = new KeyCombo(Key.U, ModifierKeys.Control | ModifierKeys.Shift)
+                                 KeyCombination = new KeyCombo(Key.I, ModifierKeys.Control | ModifierKeys.Shift)
                              };
             yield return new EncloseSelectionInSomething(selectionText, "<sup>", "</sup>")
                              {
@@ -63,6 +63,12 @@ namespace Thawmadoce.Editor.SelectionCommands
                                  CommandIcon = "/Thawmadoce;component/Media/format_list_unordered.png",
                                  KeyCombination = new KeyCombo(Key.L, ModifierKeys.Control | ModifierKeys.Shift)
                              };
+            yield return new ToCode(selectionText)
+            {
+                CommandText = "Code",
+                CommandIcon = "/Thawmadoce;component/Media/code-icon.png",
+                KeyCombination = new KeyCombo(Key.C, ModifierKeys.Control | ModifierKeys.Shift)
+            };
         }
     }
 }

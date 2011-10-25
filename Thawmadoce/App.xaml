@@ -1,7 +1,8 @@
 ﻿<Application x:Class="Thawmadoce.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-             xmlns:Thawmadoce="clr-namespace:Thawmadoce.Bootstrapping" xmlns:Converters="clr-namespace:Thawmadoce.Frame.Converters">
+             xmlns:Thawmadoce="clr-namespace:Thawmadoce.Bootstrapping" 
+             xmlns:Converters="clr-namespace:Thawmadoce.Frame.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -11,6 +12,28 @@
                 <ResourceDictionary>
                     <BooleanToVisibilityConverter x:Key="BoolToVis" />
                     <Converters:PathToImageSourceConverter x:Key="PathToImg" />
+
+                    <LinearGradientBrush x:Key="Blueback_Inverse" EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#EBEBEB" Offset="0"/>
+                        <GradientStop Color="#FF537FB6" Offset="0.5"/>
+                        <GradientStop Color="#FFA1C6F3" Offset="0.048"/>
+                        <GradientStop Color="#FFABC3E2" Offset="1"/>
+                    </LinearGradientBrush>
+
+                    <LinearGradientBrush x:Key="Blueback" EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFA1C6F3" Offset="0"/>
+                        <GradientStop Color="#EBEBEB" Offset="0.564"/>
+                        <GradientStop Color="#FFABC3E2" Offset="0.204"/>
+                        <GradientStop Color="#FF537FB6" Offset="1"/>
+                    </LinearGradientBrush>
+                    
+                    <Style x:Key="Button_VisibleCommand" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="{StaticResource Blueback}"/>
+                        <Setter Property="Margin" Value="3" />
+                        <Setter Property="Command" Value="{Binding Command, Mode=OneWay}" />
+                        <Setter Property="ToolTip" Value="{Binding TooltipText, Mode=OneWay}" />
+                    </Style>
+                    
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

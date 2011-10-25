@@ -10,7 +10,7 @@ namespace Thawmadoce.Frame
         private readonly Dictionary<object, List<InputBinding>> _bindings = new Dictionary<object, List<InputBinding>>();
         private readonly object _globalScope = new object();
 
-        void IGestureService.AddKeyBinding(KeyBinding binding, object scope)
+        void IGestureService.AddKeyBinding(InputBinding binding, object scope)
         {
             var bindings = GetBindingScope(scope);
             bindings.Add(binding);
