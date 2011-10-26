@@ -7,6 +7,7 @@ using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using System.Linq;
 using Thawmadoce.Frame.Extensions;
+using Thawmadoce.MainApp;
 
 namespace Thawmadoce.Editor
 {
@@ -24,13 +25,25 @@ namespace Thawmadoce.Editor
         private string _currentSelection;
         private bool _showSelectionBar;
 
-        public MarkdownInputViewModel(IPublisher publisher, Func<IGestureService> gestureSvcFactory,  ISelectionPlugin[] selectionPlugins)
+        public MarkdownInputViewModel(
+            IPublisher publisher, 
+            Func<IGestureService> gestureSvcFactory,  
+            IObservable<IRefocusEditor> refocusEditorStream,
+            ISelectionPlugin[] selectionPlugins)
         {
             _publisher = publisher;
             _gestureSvcFactory = gestureSvcFactory;
             _selectionPlugins = selectionPlugins;
+            RefocusEditorStream = refocusEditorStream;
             _typingTimer = new Timer(TimerCallback);
         }
+
+        public void Handle(NewContentForEditorUiMsg msg)
+        {
+            MarkdownText = msg.Text;
+        }
+
+        public IObservable<IRefocusEditor> RefocusEditorStream { get; private set; }
 
         public string MarkdownText
         {

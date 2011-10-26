@@ -37,7 +37,7 @@
     <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF5B61A5"/>
     <Style x:Key="AppItemsButton" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{StaticResource Blueback}"/>
-        <Setter Property="Margin" Value="0,1" />
+        <Setter Property="Margin" Value="0" />
         <Setter Property="ToolTip" Value="Open the App Menu (Ctrl+Enter)" />
         <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
         <Setter Property="BorderThickness" Value="1"/>

@@ -86,6 +86,7 @@
     </Compile>
     <Compile Include="Editor\MarkdownEditorViewModel.cs" />
     <Compile Include="Editor\MarkdownInputViewModel.cs" />
+    <Compile Include="Editor\Messages\NewContentForEditorUiMsg.cs" />
     <Compile Include="Editor\Messages\NewHtmlMsg.cs" />
     <Compile Include="Editor\Messages\NewMarkdownTaskMsg.cs" />
     <Compile Include="Editor\Messages\TogglePreviewUiMsg.cs" />
@@ -103,7 +104,7 @@
     <Compile Include="Extensibility\IVisibleCommand.cs" />
     <Compile Include="Extensibility\KeyCombo.cs" />
     <Compile Include="Extensibility\SelectionCommand.cs" />
-    <Compile Include="Extensibility\SendMessageAppItem.cs" />
+    <Compile Include="Extensibility\DoActionVisibleCommand.cs" />
     <Compile Include="Extensibility\VisibleCommand.cs" />
     <Compile Include="Frame\AbstractViewModel.cs" />
     <Compile Include="Frame\DataTemplateChoice.cs" />
@@ -132,6 +133,8 @@
     <Compile Include="MainApp\AppItemsViewModel.cs" />
     <Compile Include="MainApp\FileOpsSaga.cs" />
     <Compile Include="MainApp\MainAppShortcuts.cs" />
+    <Compile Include="MainApp\Messages\IRefocusEditor.cs" />
+    <Compile Include="MainApp\Messages\NewFileMsg.cs" />
     <Compile Include="MainApp\Messages\OpenFileUiMsg.cs" />
     <Compile Include="MainApp\Messages\SaveFileUiMsg.cs" />
     <Compile Include="MainApp\Messages\ToggleAppMenuUiMsg.cs" />
@@ -141,7 +144,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapping\AppBootstrapper.cs" />
-    <Compile Include="MainApp\StandardAppItems.cs" />
+    <Compile Include="MainApp\CommonAppItems.cs" />
     <Page Include="Editor\MarkdownEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,6 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\code-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\document-new.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

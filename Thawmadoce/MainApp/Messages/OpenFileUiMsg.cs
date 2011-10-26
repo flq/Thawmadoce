@@ -1,4 +1,4 @@
 ﻿namespace Thawmadoce.MainApp
 {
-    public class OpenFileUiMsg { }
+    public class OpenFileUiMsg : IRefocusEditor  { }
 }

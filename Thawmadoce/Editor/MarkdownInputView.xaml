@@ -183,7 +183,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type Extensibility:SelectionCommand}">
-                        <Button Style="{StaticResource Button_VisibleCommand}" Height="38">
+                        <Button Style="{StaticResource Button_VisibleCommand}" Height="32">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{Binding CommandIcon, Converter={StaticResource PathToImg}}" Margin="2" />
                                 <TextBlock Text="{Binding CommandText}" />
@@ -196,6 +196,7 @@
       <Editor:MarkdownEditor 
           x:Name="MarkdownText"
           CurrentSelection="{Binding CurrentSelection, Mode=TwoWay}" 
+          FocusCommands="{Binding RefocusEditorStream, Mode=OneWay}"
           Margin="2,2,2,2"
           HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch" />

@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Thawmadoce.MainApp;
 
 namespace Thawmadoce.Editor
 {
-    public enum ModKeys
-    {
-        None = 0,
-        Ctrl = 1,
-        Shift = 2
-    }
-
     public partial class MarkdownEditor : TextBox
     {
         private int _lastCaretIndex;
-
-        private ModKeys _currentModKeys = ModKeys.None;
+        private bool _runningModification;
 
         public MarkdownEditor()
         {
@@ -27,20 +19,41 @@ namespace Thawmadoce.Editor
             AcceptsTab = true;
             Loaded += HandleLoaded;
             IsVisibleChanged += HandleVisibleChanged;
-            PreviewKeyDown += HandlePreviewKeyDown;
-            PreviewKeyUp += HandlePreviewKeyUp;
             SelectionChanged += HandleSelectionChanged;
+            // TODO and HACK : OMG, this is bullshit, but what a fiddle to get this down here :/
+            //ObjectFactory.GetInstance<IObservable<IRefocusEditor>>().Subscribe(HandleNeedsRefocus);
         }
 
         public static readonly DependencyProperty CurrentSelectionProperty =
             DependencyProperty.Register("CurrentSelection", typeof (string), typeof (MarkdownEditor), new PropertyMetadata(HandleCurrentSelectionChanged));
 
-        private bool _runningModification;
-
         public string CurrentSelection
         {
             get { return (string) GetValue(CurrentSelectionProperty); }
             set { SetValue(CurrentSelectionProperty, value); }
+        }
+
+        public static readonly DependencyProperty FocusCommandsProperty =
+            DependencyProperty.Register("FocusCommands", typeof(IObservable<IRefocusEditor>), typeof(MarkdownEditor), new PropertyMetadata(HandleFocusCommandsChanged));
+
+        public IObservable<IRefocusEditor> FocusCommands
+        {
+            get { return (IObservable<IRefocusEditor>) GetValue(FocusCommandsProperty); }
+            set { SetValue(FocusCommandsProperty, value); }
+        }
+
+        private static void HandleFocusCommandsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null)
+            {
+                var me = (MarkdownEditor) d;
+                me.SetFocusCommandStream((IObservable<IRefocusEditor>) e.NewValue);
+            }
+        }
+
+        private void SetFocusCommandStream(IObservable<IRefocusEditor> refocusStream)
+        {
+            refocusStream.Subscribe(_ => FocusMeth());
         }
 
         private static void HandleCurrentSelectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -81,7 +94,6 @@ namespace Thawmadoce.Editor
             if ((bool)e.NewValue)
             {
                 FocusMeth();
-                _currentModKeys = ModKeys.None;
             }
             else
             {
@@ -103,33 +115,6 @@ namespace Thawmadoce.Editor
                 CaretIndex = _lastCaretIndex;
             Focus();
             Keyboard.Focus(this);
-        }
-
-        private void HandlePreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            Debug.WriteLine(e.Key);
-            if (ControlPressed(e))
-                _currentModKeys |= ModKeys.Ctrl;
-            if (ShiftPressed(e))
-                _currentModKeys |= ModKeys.Shift;
-        }
-
-        private void HandlePreviewKeyUp(object sender, KeyEventArgs e)
-        {
-            if (ControlPressed(e))
-                _currentModKeys &= ModKeys.Ctrl;
-            if (ShiftPressed(e))
-                _currentModKeys &= ModKeys.Shift;
-        }
-
-        private static bool ControlPressed(KeyEventArgs e)
-        {
-            return e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl;
-        }
-
-        private static bool ShiftPressed(KeyEventArgs e)
-        {
-            return e.Key == Key.LeftShift || e.Key == Key.RightShift;
         }
     }
 }
