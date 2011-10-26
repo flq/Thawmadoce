@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Input;
 using MemBus;
+using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;
 
 namespace Thawmadoce.MainApp
@@ -35,7 +37,30 @@ namespace Thawmadoce.MainApp
                                  CommandText = "Save current text",
                                  KeyCombination = new KeyCombo(Key.S, ModifierKeys.Control)
                              };
+            yield return new DoActionVisibleCommand(SendInfo)
+                             {
+                                 CommandIcon = "/Thawmadoce;component/Media/info.png",
+                                 CommandText = "Some info on Thawmadoce",
+                             };
 
+        }
+
+        private void SendInfo()
+        {
+            _publisher.Publish(new NewContentForEditorUiMsg(LoadFile()));
+        }
+
+        private static Stream GetStream()
+        {
+            return typeof(ShellView).Assembly
+              .GetManifestResourceStream(typeof(ShellView), "help.md");
+        }
+
+        private static string LoadFile()
+        {
+            Stream stream = GetStream();
+            var sr = new StreamReader(stream);
+            return sr.ReadToEnd();
         }
     }
 }

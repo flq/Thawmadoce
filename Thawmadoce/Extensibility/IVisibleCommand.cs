@@ -22,5 +22,7 @@ namespace Thawmadoce.Extensibility
         KeyCombo KeyCombination { get; set; }
 
         KeyBinding KeyBinding { get; }
+
+        bool HasKeyBinding { get; }
     }
 }

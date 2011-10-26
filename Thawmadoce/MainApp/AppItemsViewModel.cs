@@ -64,8 +64,8 @@ namespace Thawmadoce.MainApp
         private List<IVisibleCommand> CreateGroup(IAppItemsPlugin plugin)
         {
             return plugin.GetCommands()
-                .Pipeline(cmd => _keyBindings.Add(cmd.KeyBinding))
                 .Pipeline(cmd => cmd.As<IExecutedCallback>(c => c.SetCallback(ToggleAppMenu)))
+                .Pipeline(cmd => { if (cmd.HasKeyBinding) _keyBindings.Add(cmd.KeyBinding); })
                 .ToList();
         }
     }

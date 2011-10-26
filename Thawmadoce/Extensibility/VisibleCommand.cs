@@ -56,10 +56,14 @@ namespace Thawmadoce.Extensibility
         {
             get
             {
-                if (KeyCombination == KeyCombo.Default)
-                    throw new InvalidOperationException("Will not generate a key binding for an empty key combination");
-                return new KeyBinding(Command, KeyCombination.Key, KeyCombination.Modifier);
+                return HasKeyBinding ? 
+                    new KeyBinding(Command, KeyCombination.Key, KeyCombination.Modifier) : null;
             }
+        }
+
+        public bool HasKeyBinding
+        {
+            get { return KeyCombination != KeyCombo.Default; }
         }
 
         protected virtual bool InternalCanExecute()

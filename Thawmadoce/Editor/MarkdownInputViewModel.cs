@@ -98,7 +98,7 @@ namespace Thawmadoce.Editor
                     _selectionPlugins
                       .SelectMany(p => p.GetCommands(_currentSelection))
                       .Pipeline(cmd => cmd.As<ISelectionCommandWireup>(w => w.AfterModificationCallback(AfterCommandModifiedSelection)))
-                      .Pipeline(cmd => { if (cmd.KeyCombination != KeyCombo.Default) _gestureSvcFactory().AddKeyBinding(cmd.KeyBinding, _commandKeysScope); })
+                      .Pipeline(cmd => { if (cmd.HasKeyBinding) _gestureSvcFactory().AddKeyBinding(cmd.KeyBinding, _commandKeysScope); })
                 );
                 ShowSelectionBar = true;
             }
