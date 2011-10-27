@@ -116,6 +116,7 @@
     <Compile Include="Frame\GestureService.cs" />
     <Compile Include="Frame\IDispatchServices.cs" />
     <Compile Include="Frame\IGestureService.cs" />
+    <Compile Include="Frame\ItemsWithContentContainer.cs" />
     <Compile Include="Frame\Messaging\PassViewModelMessagesThroughViewActivation.cs" />
     <Compile Include="Frame\Messaging\ActivateViewModelMsg.cs" />
     <Compile Include="Frame\Converters\MultiplicatorConverter.cs" />
@@ -127,6 +128,11 @@
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
     <Compile Include="Frame\WpfDispatchService.cs" />
     <Compile Include="Frame\XamlStatic.cs" />
+    <Compile Include="MainApp\AppDialogAdapterViewModel.cs" />
+    <Compile Include="MainApp\AppDialogsView.xaml.cs">
+      <DependentUpon>AppDialogsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainApp\AppDialogsViewModel.cs" />
     <Compile Include="MainApp\AppItemsView.xaml.cs">
       <DependentUpon>AppItemsView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +144,10 @@
     <Compile Include="MainApp\Messages\OpenFileUiMsg.cs" />
     <Compile Include="MainApp\Messages\SaveFileUiMsg.cs" />
     <Compile Include="MainApp\Messages\ToggleAppMenuUiMsg.cs" />
+    <Compile Include="Settings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsViewModel.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -157,7 +167,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Editor\MarkdownInputViewResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Editor\PreviewView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainApp\AppDialogAdapterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainApp\AppDialogsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainApp\AppItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,6 +258,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\dialog_close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

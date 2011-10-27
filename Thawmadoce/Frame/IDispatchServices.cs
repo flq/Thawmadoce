@@ -9,5 +9,6 @@ namespace Thawmadoce.Frame
         Dispatcher Dispatcher { get; }
         SynchronizationContext SyncContext { get; }
         void EnsureActionOnDispatcher(Action action);
+        void DoActionAfterPeriod(TimeSpan period, Action action);
     }
 }

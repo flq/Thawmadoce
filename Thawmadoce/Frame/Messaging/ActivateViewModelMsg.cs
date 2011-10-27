@@ -3,6 +3,17 @@ using MemBus.Support;
 
 namespace Thawmadoce.Frame.Messaging
 {
+
+
+    /// <summary>
+    /// Activate App Dialog
+    /// </summary>
+    public class ActivateAppDialog : ActivateViewModelMsg {
+        public ActivateAppDialog(Type viewModelType) : base(viewModelType)
+        {
+        }
+    }
+
     /// <summary>
     /// Generic version
     /// </summary>

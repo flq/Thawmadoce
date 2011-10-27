@@ -4,6 +4,8 @@ using System.Windows.Input;
 using MemBus;
 using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;
+using Thawmadoce.Frame.Messaging;
+using Thawmadoce.Settings;
 
 namespace Thawmadoce.MainApp
 {
@@ -41,6 +43,10 @@ namespace Thawmadoce.MainApp
                              {
                                  CommandIcon = "/Thawmadoce;component/Media/info.png",
                                  CommandText = "Some info on Thawmadoce",
+                             };
+            yield return new DoActionVisibleCommand(()=> _publisher.Publish(new ActivateAppDialog(typeof(SettingsViewModel))))
+                             {
+                                 CommandText = "Test",
                              };
 
         }

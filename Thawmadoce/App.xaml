@@ -33,7 +33,32 @@
                         <Setter Property="Command" Value="{Binding Command, Mode=OneWay}" />
                         <Setter Property="ToolTip" Value="{Binding TooltipText, Mode=OneWay}" />
                     </Style>
-                    
+
+                    <Style x:Key="NakedButton" TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border 
+                                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                        Margin="{TemplateBinding Margin}">
+                                        <ContentPresenter x:Name="cnt" Margin="{TemplateBinding Padding}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Cursor" Value="Hand" />
+                                            <Setter Property="Effect" TargetName="cnt">
+                                                <Setter.Value>
+                                                    <DropShadowEffect ShadowDepth="3" Color="Yellow" BlurRadius="10" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

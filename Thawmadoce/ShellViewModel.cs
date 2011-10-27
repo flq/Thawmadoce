@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using MemBus;
@@ -17,10 +16,12 @@ namespace Thawmadoce {
         private readonly IKeyboardOnlyActions[] _keyboardOnlyActions;
         private readonly IPublisher _publisher;
         private readonly GestureService _gestureSvc = new GestureService();
+
         private string _title = "The awesome markdown centrifuge";
 
         public MarkdownEditorViewModel Editor { get; set; }
         public AppItemsViewModel AppItems { get; set; }
+        public AppDialogsViewModel AppDialogs { get; set; }
 
         public ShellViewModel(IKeyboardOnlyActions[] keyboardOnlyActions, IPublisher publisher)
         {
@@ -32,6 +33,7 @@ namespace Thawmadoce {
         {
             get { return _gestureSvc; }
         }
+
 
         protected override void OnActivate()
         {
@@ -47,7 +49,5 @@ namespace Thawmadoce {
                 .Select(kc => new KeyBinding(new RelayCommand(() => _publisher.Publish(kc.MessageFactory())), kc.Keys.Key, kc.Keys.Modifier))
                 .ForEach(kb => _gestureSvc.As<IGestureService>(gsv => gsv.AddKeyBinding(kb)));
         }
-
-        
     }
 }

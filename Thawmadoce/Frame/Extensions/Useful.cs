@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using System.Windows;
 
 namespace Thawmadoce.Frame.Extensions
 {
@@ -47,6 +49,12 @@ namespace Thawmadoce.Frame.Extensions
         {
             if (@event != null)
                 @event(sender, args);
+        }
+
+        public static void Raise(this PropertyChangedEventHandler @event, object sender, string property)
+        {
+            if (@event != null)
+                @event(sender, new PropertyChangedEventArgs(property));
         }
 
         public static string FullOutput(this Exception x)
