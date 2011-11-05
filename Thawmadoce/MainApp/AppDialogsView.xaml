@@ -7,7 +7,7 @@
     <Frame:ItemsWithContentContainer 
                       x:Name="AppDialogs" 
                       Background="{StaticResource Blueback_Inverse}"
-                      MaxHeight="250">
+                      MaxHeight="300">
         <Frame:ItemsWithContentContainer.Resources>
             <ControlTemplate x:Key="DialogTemplate" TargetType="{x:Type ContentControl}">
                 <StackPanel MinWidth="100">
@@ -26,7 +26,6 @@
         </Frame:ItemsWithContentContainer.Resources>
         <Frame:ItemsWithContentContainer.ItemContainerStyle>
             <Style TargetType="{x:Type ContentControl}">
-                <Setter Property="MaxWidth" Value="250" />
                 <Setter Property="Margin" Value="10,5,5,5" />
                 <Setter Property="Opacity" Value="0" />
                 <Setter Property="Template" Value="{StaticResource DialogTemplate}" />

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using MemBus;
@@ -6,6 +7,7 @@ using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Extensions;
+using Thawmadoce.Frame.Messaging;
 using Thawmadoce.MainApp;
 using System.Linq;
 
@@ -43,11 +45,19 @@ namespace Thawmadoce {
 
         protected override void OnViewAttached(object view, object context)
         {
-            _gestureSvc.AttachView((UIElement)view);
+            var uiElement = (UIElement)view;
+            _gestureSvc.AttachView(uiElement);
             _keyboardOnlyActions
                 .SelectMany(kb => kb.GetKeyboardActions())
                 .Select(kc => new KeyBinding(new RelayCommand(() => _publisher.Publish(kc.MessageFactory())), kc.Keys.Key, kc.Keys.Modifier))
                 .ForEach(kb => _gestureSvc.As<IGestureService>(gsv => gsv.AddKeyBinding(kb)));
+            view.As<FrameworkElement>(vw => vw.Loaded += HandleViewLoaded);
+        }
+
+        private void HandleViewLoaded(object sender, RoutedEventArgs e)
+        {
+            sender.As<FrameworkElement>(vw => vw.Loaded -= HandleViewLoaded);
+            _publisher.Publish(new UiSystemReadyUiMsg());
         }
     }
 }

@@ -55,6 +55,7 @@
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Reactive, Version=1.0.10621.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -123,6 +124,7 @@
     <Compile Include="Frame\Converters\PathToImageSourceConverter.cs" />
     <Compile Include="Frame\Messaging\TaskMsgIsHandledOutsideUi.cs" />
     <Compile Include="Frame\Messaging\UiMsgMustBeDispatched.cs" />
+    <Compile Include="Frame\Messaging\UiSystemReadyUiMsg.cs" />
     <Compile Include="Frame\RelayCommand.cs" />
     <Compile Include="Frame\StructuremapBridge.cs" />
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
@@ -142,8 +144,11 @@
     <Compile Include="MainApp\Messages\IRefocusEditor.cs" />
     <Compile Include="MainApp\Messages\NewFileMsg.cs" />
     <Compile Include="MainApp\Messages\OpenFileUiMsg.cs" />
+    <Compile Include="MainApp\Messages\RefocusEditorUiMsg.cs" />
     <Compile Include="MainApp\Messages\SaveFileUiMsg.cs" />
     <Compile Include="MainApp\Messages\ToggleAppMenuUiMsg.cs" />
+    <Compile Include="Settings\SettingsSetupSaga.cs" />
+    <Compile Include="Settings\SettingsStorageLocationSetTaskMsg.cs" />
     <Compile Include="Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>

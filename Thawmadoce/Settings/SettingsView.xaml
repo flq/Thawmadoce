@@ -3,10 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <Label>Hello</Label>
-        <Button x:Name="Click">Click</Button>
-    </StackPanel>
+             mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock TextWrapping="Wrap" MaxWidth="400" Margin="5">
+                Hi, some info is needed such that Thawmadoce 
+                can reliably store and retrieve settings that the app or its plugins need
+                and want to keep around between starts. 
+            </TextBlock>
+            <TextBlock TextWrapping="Wrap" Margin="5" FontWeight="Bold">
+                Where would you like Thawmadoce to keep settings?
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="5">
+            <RadioButton x:Name="AppFolder" Margin="0,4">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Make a .Thawmadoce folder where the App is - </TextBlock>
+                    <TextBlock x:Name="AppFolderLocation" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton x:Name="UserFolder" Margin="0,4">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Make a .Thawmadoce folder where most apps store data - </TextBlock>
+                    <TextBlock x:Name="UserFolderLocation" />
+                </StackPanel>
+            </RadioButton>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+          <Button x:Name="CustomFolder" Padding="5" Margin="5">I want to choose a folder myself</Button>
+          <Button x:Name="Done" Padding="5" Margin="5">Done</Button>
+        </StackPanel>
+    </Grid>
 </UserControl>

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Caliburn.Micro;
 using Thawmadoce.Frame;
+using Thawmadoce.Frame.Extensions;
 using Thawmadoce.Frame.Messaging;
 using System.Linq;
 
@@ -42,4 +43,4 @@ namespace Thawmadoce.MainApp
             NotifyOfPropertyChange(() => AppDialogsVisible);
         }
     }
-}
+};

@@ -44,11 +44,6 @@ namespace Thawmadoce.MainApp
                                  CommandIcon = "/Thawmadoce;component/Media/info.png",
                                  CommandText = "Some info on Thawmadoce",
                              };
-            yield return new DoActionVisibleCommand(()=> _publisher.Publish(new ActivateAppDialog(typeof(SettingsViewModel))))
-                             {
-                                 CommandText = "Test",
-                             };
-
         }
 
         private void SendInfo()

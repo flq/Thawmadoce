@@ -12,12 +12,22 @@ namespace Thawmadoce.MainApp
     public class AppDialogAdapterViewModel : IDeactivate, INotifyPropertyChanged
     {
         private readonly IDispatchServices _svc;
+        private bool _deactivationFromHere;
 
         public AppDialogAdapterViewModel(object dialog, IDispatchServices svc)
         {
             _svc = svc;
             Dialog = dialog;
+            Dialog.As<IDeactivate>(d => d.Deactivated += HandleDeactivation);
             Close = new RelayCommand(DoClose);
+        }
+
+        private void HandleDeactivation(object sender, DeactivationEventArgs e)
+        {
+            sender.As<IDeactivate>(d => d.Deactivated -= HandleDeactivation);
+            if (_deactivationFromHere)
+                return;
+            Deactivate(e.WasClosed);
         }
 
         public object Dialog { get; private set; }
@@ -31,6 +41,7 @@ namespace Thawmadoce.MainApp
 
         public void Deactivate(bool close)
         {
+            _deactivationFromHere = true;
             Dialog.As<IDeactivate>(d => d.Deactivate(close));
             CloseTrigger = true;
             PropertyChanged.Raise(this, "CloseTrigger");
