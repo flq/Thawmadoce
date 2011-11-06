@@ -32,6 +32,7 @@ namespace Thawmadoce.Bootstrapping
             For(typeof(IObservable<>)).Use(typeof(MessageObservable<>));
             Forward<IBus, IPublisher>();
             Forward<IBus, ISubscriber>();
+            For<IMessagePublisher>().Use(ctx => new MessagePublisher(ctx.GetInstance<IPublisher>()));
 
             ForSingletonOf<ISettings>().Use<SettingsImpl>();
 

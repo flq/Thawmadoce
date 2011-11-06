@@ -103,6 +103,7 @@
     <Compile Include="Extensibility\IAppItemsPlugin.cs" />
     <Compile Include="Extensibility\IExecutedCallback.cs" />
     <Compile Include="Extensibility\IKeyboardOnlyActions.cs" />
+    <Compile Include="Extensibility\IMessagePublisher.cs" />
     <Compile Include="Extensibility\ISaga.cs" />
     <Compile Include="Extensibility\ISelectionPlugin.cs" />
     <Compile Include="Extensibility\IVisibleCommand.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Frame\IDispatchServices.cs" />
     <Compile Include="Frame\IGestureService.cs" />
     <Compile Include="Frame\ItemsWithContentContainer.cs" />
+    <Compile Include="Frame\MessagePublisher.cs" />
     <Compile Include="Frame\Messaging\PassViewModelMessagesThroughViewActivation.cs" />
     <Compile Include="Frame\Messaging\ActivateViewModelMsg.cs" />
     <Compile Include="Frame\Converters\MultiplicatorConverter.cs" />
