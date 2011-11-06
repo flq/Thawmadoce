@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Thawmadoce")]
-[assembly: AssemblyDescription("The awesome markdown centrifuge")]
+[assembly: AssemblyTitle("Thawmadoce.RfSitesPublishing")]
+[assembly: AssemblyDescription("Plugin for publishing to teh Rf.Sites Admin interface")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("realfiction")]
-[assembly: AssemblyProduct("Thawmadoce")]
+[assembly: AssemblyProduct("Thawmadoce.RfSitesPublishing")]
 [assembly: AssemblyCopyright("Copyright © realfiction 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

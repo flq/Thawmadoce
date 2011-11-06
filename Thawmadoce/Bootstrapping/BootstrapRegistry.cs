@@ -11,6 +11,7 @@ using StructureMap.Configuration.DSL;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Messaging;
+using Thawmadoce.Settings;
 
 namespace Thawmadoce.Bootstrapping
 {
@@ -31,6 +32,8 @@ namespace Thawmadoce.Bootstrapping
             For(typeof(IObservable<>)).Use(typeof(MessageObservable<>));
             Forward<IBus, IPublisher>();
             Forward<IBus, ISubscriber>();
+
+            ForSingletonOf<ISettings>().Use<SettingsImpl>();
 
             Scan(s =>
             {
