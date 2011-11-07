@@ -7,14 +7,14 @@ namespace Thawmadoce.Frame.Converters
 {
     /// <summary>
     /// Example usage:
-    /// <Frame:DictionaryConverter.Values>
-    ///   <Collections:Hashtable>
-    ///     <System:String x:Key="{x:Static UI:InteractionKind.Information}">/Lib;component/media/info.png</System:String>
-    ///     <System:String x:Key="{x:Static UI:InteractionKind.Warning}">/Lib;component/media/Warning.png</System:String>
-    ///     <System:String x:Key="{x:Static UI:InteractionKind.Error}">/Lib;component/media/Error.png</System:String>
-    ///     <System:String x:Key="{x:Static UI:InteractionKind.Question}">/Lib;component/media/Question.png</System:String>
-    ///   </Collections:Hashtable>
-    /// </Frame:DictionaryConverter.Values>
+    /// <DictionaryConverter.Values>
+    ///   <Hashtable>
+    ///     <String x:Key="{x:Static UI:InteractionKind.Information}">/Lib;component/media/info.png</System:String>
+    ///     <String x:Key="{x:Static UI:InteractionKind.Warning}">/Lib;component/media/Warning.png</System:String>
+    ///     <String x:Key="{x:Static UI:InteractionKind.Error}">/Lib;component/media/Error.png</System:String>
+    ///     <String x:Key="{x:Static UI:InteractionKind.Question}">/Lib;component/media/Question.png</System:String>
+    ///   </Hashtable>
+    /// </DictionaryConverter.Values>
     /// </summary>
     [ContentProperty("Values")]
     public class DictionaryConverter : IValueConverter

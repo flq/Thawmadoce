@@ -20,8 +20,6 @@ namespace Thawmadoce.Editor
             Loaded += HandleLoaded;
             IsVisibleChanged += HandleVisibleChanged;
             SelectionChanged += HandleSelectionChanged;
-            // TODO and HACK : OMG, this is bullshit, but what a fiddle to get this down here :/
-            //ObjectFactory.GetInstance<IObservable<IRefocusEditor>>().Subscribe(HandleNeedsRefocus);
         }
 
         public static readonly DependencyProperty CurrentSelectionProperty =

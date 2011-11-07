@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>1607</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -54,6 +55,9 @@
       <SubType>Code</SubType>
     </Compile>
     <AppDesigner Include="Properties\" />
+    <Compile Include="PublishingView.xaml.cs">
+      <DependentUpon>PublishingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PublishingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\archive_extract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="PublishingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -28,6 +28,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Thawmadoce.XML</DocumentationFile>
+    <NoWarn>1570,1591,1607</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -119,6 +121,7 @@
     <Compile Include="Frame\Extensions\Useful.cs" />
     <Compile Include="Frame\Extensions\ViewModelExtensions.cs" />
     <Compile Include="Frame\GestureService.cs" />
+    <Compile Include="Frame\QuickGrid.cs" />
     <Compile Include="Frame\IDispatchServices.cs" />
     <Compile Include="Frame\IGestureService.cs" />
     <Compile Include="Frame\ItemsWithContentContainer.cs" />

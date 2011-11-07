@@ -7,8 +7,7 @@ namespace Thawmadoce.Frame
 {
     public class WpfDispatchService : IDispatchServices
     {
-        private Dictionary<DispatcherTimer,Action> timers = new Dictionary<DispatcherTimer, Action>();
-        private Action nextDispatcherAction;
+        private readonly Dictionary<DispatcherTimer,Action> timers = new Dictionary<DispatcherTimer, Action>();
 
         public WpfDispatchService(DispatcherObject app)
         {
