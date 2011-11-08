@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Windows;
+using System.Linq.Expressions;
+using Caliburn.Micro;
 
 namespace Thawmadoce.Frame.Extensions
 {
@@ -45,6 +47,12 @@ namespace Thawmadoce.Frame.Extensions
             return item != null ? passThroughOnItem(item) : default(O);
         }
 
+        public static void Raise(this EventHandler @event, object sender)
+        {
+            if (@event != null)
+                @event(sender, EventArgs.Empty);
+        }
+
         public static void Raise<T>(this EventHandler<T> @event, object sender, T args) where T : EventArgs
         {
             if (@event != null)
@@ -55,6 +63,17 @@ namespace Thawmadoce.Frame.Extensions
         {
             if (@event != null)
                 @event(sender, new PropertyChangedEventArgs(property));
+        }
+
+        public static void Raise<T>(this PropertyChangedEventHandler @event, T sender, Expression<Func<T,object>> property)
+        {
+            if (@event != null)
+                @event(sender, new PropertyChangedEventArgs(property.GetMemberInfo().Name));
+        }
+
+        public static IEnumerable<T> ToEnumerable<T>(this T item)
+        {
+            yield return item;
         }
 
         public static string FullOutput(this Exception x)
