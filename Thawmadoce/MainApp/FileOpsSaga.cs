@@ -3,19 +3,31 @@ using MemBus;
 using Microsoft.Win32;
 using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;
+using Thawmadoce.Frame.Messaging;
+using Thawmadoce.Settings;
 
 namespace Thawmadoce.MainApp
 {
     public class FileOpsSaga : ISaga
     {
         private readonly IPublisher _publisher;
+        private readonly ISettings _settings;
         private string _currentSaveFile;
         private string _lastCapturedMarkdown;
         private readonly object _fileLock = new object();
 
-        public FileOpsSaga(IPublisher publisher)
+        public FileOpsSaga(IPublisher publisher, ISettings settings)
         {
             _publisher = publisher;
+            _settings = settings;
+        }
+
+        public void Handle(UiSystemReadyUiMsg msg)
+        {
+            var s = _settings.Get<string>("Core.TmpText");
+            if (s != null)
+                _lastCapturedMarkdown = s;
+            _publisher.Publish(new NewContentForEditorUiMsg(_lastCapturedMarkdown));
         }
 
         public void Handle(OpenFileUiMsg msg)
@@ -38,6 +50,7 @@ namespace Thawmadoce.MainApp
             if (result == true)
             {
                 _currentSaveFile = dlg.FileName;
+                _settings.Delete("Core.TmpText");
                 SaveFile();
             }
         }
@@ -53,8 +66,15 @@ namespace Thawmadoce.MainApp
         public void Handle(NewMarkdownTaskMsg msg)
         {
             _lastCapturedMarkdown = msg.MarkdownText;
+            SaveText();
+        }
+
+        private void SaveText()
+        {
             if (_currentSaveFile != null)
                 SaveFile();
+            else
+                _settings.Post("Core.TmpText", _lastCapturedMarkdown);
         }
 
         private void SaveFile()

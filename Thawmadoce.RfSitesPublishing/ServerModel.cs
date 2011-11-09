@@ -6,13 +6,19 @@ using Thawmadoce.Frame.Extensions;
 
 namespace Thawmadoce.RfSitesPublishing
 {
-    public class ServerViewModel : INotifyPropertyChanged
+    public class ServerModel : INotifyPropertyChanged
     {
         private bool _canEdit;
         private readonly Lazy<ICommand> _edit;
         private readonly Lazy<ICommand> _save;
 
-        public ServerViewModel()
+        internal ServerModel(dynamic values) : this()
+        {
+            Address = values.Address;
+            Token = values.Token;
+        }
+
+        public ServerModel()
         {
             _edit = new Lazy<ICommand>(() => new RelayCommand(() => CanEdit = true));
             _save = new Lazy<ICommand>(() => new RelayCommand(DoSave));
@@ -27,6 +33,9 @@ namespace Thawmadoce.RfSitesPublishing
                 PropertyChanged.Raise(this, _ => _.CanEdit);
             }
         }
+
+        public string Address { get; set; }
+        public string Token { get; set; }
 
         public ICommand Edit
         {
@@ -45,6 +54,11 @@ namespace Thawmadoce.RfSitesPublishing
         {
             CanEdit = false;
             Saved.Raise(this);
+        }
+
+        public object Compress()
+        {
+            return new { Address, Token };
         }
     }
 }

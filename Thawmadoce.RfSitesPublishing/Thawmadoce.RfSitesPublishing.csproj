@@ -59,7 +59,7 @@
       <DependentUpon>PublishingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="PublishingViewModel.cs" />
-    <Compile Include="ServerViewModel.cs" />
+    <Compile Include="ServerModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Thawmadoce\Thawmadoce.csproj">
