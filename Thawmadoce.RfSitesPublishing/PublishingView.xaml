@@ -60,7 +60,7 @@
                 <Button x:Name="AddServer" Content="Add"/>
             </StackPanel>
         </GroupBox>
-        <Button Grid.Column="2" Margin="10" Padding="10" Content="Publish!" Foreground="White" FontWeight="Bold">
+        <Button x:Name="Publish" Grid.Column="2" Margin="10" Padding="10" Content="Publish!" Foreground="White" FontWeight="Bold">
             <Button.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1.0">
                     <GradientStop Offset="0" Color="Yellow" />

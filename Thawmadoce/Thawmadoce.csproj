@@ -83,6 +83,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapping\BootstrapRegistry.cs" />
+    <Compile Include="Bootstrapping\HandleExceptionOccurredMessages.cs" />
     <Compile Include="Bootstrapping\HandlerRegistrationOnViewModels.cs" />
     <Compile Include="Bootstrapping\IStartupTask.cs" />
     <Compile Include="Bootstrapping\WireUpSagasToMessaging.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
     <Compile Include="Frame\WpfDispatchService.cs" />
     <Compile Include="Frame\XamlStatic.cs" />
+    <Compile Include="MainApp\ActivateExceptionAppDialog.cs" />
     <Compile Include="MainApp\AppDialogAdapterViewModel.cs" />
     <Compile Include="MainApp\AppDialogsView.xaml.cs">
       <DependentUpon>AppDialogsView.xaml</DependentUpon>
@@ -147,6 +149,10 @@
       <DependentUpon>AppItemsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainApp\AppItemsViewModel.cs" />
+    <Compile Include="MainApp\ExceptionDialogView.xaml.cs">
+      <DependentUpon>ExceptionDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainApp\ExceptionDialogViewModel.cs" />
     <Compile Include="MainApp\FileOpsSaga.cs" />
     <Compile Include="MainApp\MainAppShortcuts.cs" />
     <Compile Include="MainApp\Messages\IRefocusEditor.cs" />
@@ -203,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainApp\AppItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainApp\ExceptionDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

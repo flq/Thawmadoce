@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using Thawmadoce.Extensibility;
 using Thawmadoce.Settings;
 using Thawmadoce.Frame.Extensions;
 using System.Linq;
@@ -11,11 +13,13 @@ namespace Thawmadoce.RfSitesPublishing
         private const string StoreKey = "PublishingViewModel.Servers";
         
         private readonly ISettings _settings;
+        private readonly IMessagePublisher _publisher;
         private readonly ObservableCollection<ServerModel> _servers = new ObservableCollection<ServerModel>();
 
-        public PublishingViewModel(ISettings settings)
+        public PublishingViewModel(ISettings settings, IMessagePublisher publisher)
         {
             _settings = settings;
+            _publisher = publisher;
             PublishDate = DateTime.Today;
             Time = DateTime.UtcNow.ToShortTimeString();
             LoadStoredServers();
@@ -37,6 +41,28 @@ namespace Thawmadoce.RfSitesPublishing
             var serverViewModel = new ServerModel { CanEdit = true};
             serverViewModel.Saved += HandleSaved;
             Servers.Add(serverViewModel);
+        }
+
+        public void Publish()
+        {
+            _publisher.Publish(new PublishTextTaskMsg
+                                   {
+                                       Title = Title,
+                                       PublishDate = PublishDateTime, 
+                                       Server = CurrentServer.Address, 
+                                       Token = CurrentServer.Token
+                                   });
+        }
+
+        public DateTime PublishDateTime
+        {
+            get
+            {
+                TimeSpan ts;
+                if (TimeSpan.TryParseExact(Time, "HH:mm", CultureInfo.InvariantCulture, out ts))
+                    return PublishDate + ts;
+                return PublishDate;
+            }
         }
 
         private void LoadStoredServers()

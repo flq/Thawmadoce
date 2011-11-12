@@ -25,7 +25,7 @@
             
         </ItemsControl>
         
-        <Button Style="{StaticResource AppItemsButton}" x:Name="ToggleAppMenu">
+        <Button Style="{StaticResource AppItemsButton}" x:Name="ToggleAppMenu" IsCancel="True">
             <Image Height="32" Source="/Media/system.png" />
         </Button>
     </StackPanel>
