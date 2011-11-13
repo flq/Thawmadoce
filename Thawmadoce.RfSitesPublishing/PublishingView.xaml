@@ -39,12 +39,15 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Label>Title:</Label>
                 <TextBox x:Name="Title" Grid.Column="1" MinWidth="200" />
-                <Label Grid.Row="1" VerticalAlignment="Center">Publish Date:</Label>
-                <DockPanel Grid.Row="1" Grid.Column="1" Margin="0,5,0,0">
+                <Label Grid.Row="1">Tags:</Label>
+                <TextBox x:Name="Tags" Grid.Row="1" Grid.Column="1" MinWidth="200" />
+                <Label Grid.Row="2" VerticalAlignment="Center">Publish Date:</Label>
+                <DockPanel Grid.Row="2" Grid.Column="1" Margin="0,5,0,0">
                     <DatePicker x:Name="PublishDate" />
                     <Label>Time:</Label>
                     <TextBox x:Name="Time" HorizontalAlignment="Stretch" Margin="5,0,0,0" />

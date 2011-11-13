@@ -11,5 +11,7 @@ namespace Thawmadoce.RfSitesPublishing
         public string Server { get; set; }
 
         public string Token { get; set; }
+
+        public string Tags { get; set; }
     }
 }

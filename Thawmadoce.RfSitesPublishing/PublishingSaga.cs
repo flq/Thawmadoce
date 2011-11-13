@@ -65,6 +65,7 @@ namespace Thawmadoce.RfSitesPublishing
             var obj = new
                        {
                            title = info.Title,
+                           tags = info.Tags.Split(','),
                            publishdate = info.PublishDate,
                            isMarkdown = true,
                            body = _lastCapturedMarkdown

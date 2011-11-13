@@ -31,6 +31,7 @@ namespace Thawmadoce.RfSitesPublishing
         }
 
         public string Title { get; set; }
+        public string Tags { get; set; }
         public string Time { get; set; }
         public DateTime PublishDate { get; set; }
 
@@ -54,6 +55,7 @@ namespace Thawmadoce.RfSitesPublishing
                                    {
                                        Title = Title,
                                        PublishDate = PublishDateTime, 
+                                       Tags = Tags,
                                        Server = CurrentServer.Address, 
                                        Token = CurrentServer.Token
                                    });
@@ -64,7 +66,7 @@ namespace Thawmadoce.RfSitesPublishing
             get
             {
                 TimeSpan ts;
-                if (TimeSpan.TryParseExact(Time, "HH:mm", CultureInfo.InvariantCulture, out ts))
+                if (TimeSpan.TryParseExact(Time, "g", CultureInfo.CurrentCulture, out ts))
                     return PublishDate + ts;
                 return PublishDate;
             }
