@@ -4,6 +4,7 @@ using MemBus.Messages;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Extensions;
 using Thawmadoce.MainApp;
+using System.Reactive.Linq;
 
 namespace Thawmadoce.Bootstrapping
 {
@@ -12,12 +13,17 @@ namespace Thawmadoce.Bootstrapping
         private readonly IPublisher _publisher;
         private readonly IObservable<ExceptionOccurred> _exceptionStream;
 
-        public HandleExceptionOccurredMessages(IPublisher publisher, IDispatchServices dispatch, IObservable<ExceptionOccurred> exceptionStream)
+        public HandleExceptionOccurredMessages(
+            IPublisher publisher, 
+            IDispatchServices dispatch, 
+            IObservable<ExceptionOccurred> exceptionStream1,
+            IObservable<ExceptionMsg> exceptionStream2)
         {
             _publisher = publisher;
-            exceptionStream
-                .ObserveOn(dispatch)
-                .Subscribe(HandleNextException);
+            exceptionStream1.Select(ex => ex.Exception)
+            .Merge(exceptionStream2.Select(ex => ex.Exception))
+            .ObserveOn(dispatch)
+            .Subscribe(HandleNextException);
         }
 
         public void Run()
@@ -25,9 +31,9 @@ namespace Thawmadoce.Bootstrapping
             
         }
 
-        private void HandleNextException(ExceptionOccurred x)
+        private void HandleNextException(Exception x)
         {
-            _publisher.Publish(new ActivateExceptionAppDialog(x.Exception));
+            _publisher.Publish(new ActivateExceptionAppDialog(x));
         }
     }
 }

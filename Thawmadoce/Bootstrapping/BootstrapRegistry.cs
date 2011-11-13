@@ -38,9 +38,9 @@ namespace Thawmadoce.Bootstrapping
 
             Scan(s =>
             {
-                s.TheCallingAssembly();
-                if (Directory.Exists("plugins")) //StructureMap bails out if it doesn't exist
-                  s.AssembliesFromPath("plugins");
+                foreach (var a in AssemblyPool.ApplicationAssemblies())
+                    s.Assembly(a);
+                s.IncludeNamespace("Thawmadoce");
                 s.AddAllTypesOf<IStartupTask>();
                 s.AddAllTypesOf<ISaga>();
                 s.AddAllTypesOf<ISelectionPlugin>();

@@ -82,6 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bootstrapping\AssemblyPool.cs" />
     <Compile Include="Bootstrapping\BootstrapRegistry.cs" />
     <Compile Include="Bootstrapping\HandleExceptionOccurredMessages.cs" />
     <Compile Include="Bootstrapping\HandlerRegistrationOnViewModels.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Editor\SelectionCommands\ToCode.cs" />
     <Compile Include="Extensibility\IAppItemsPlugin.cs" />
     <Compile Include="Extensibility\IExecutedCallback.cs" />
+    <Compile Include="Extensibility\IHasTitle.cs" />
     <Compile Include="Extensibility\IKeyboardOnlyActions.cs" />
     <Compile Include="Extensibility\IMessagePublisher.cs" />
     <Compile Include="Extensibility\ISaga.cs" />
@@ -140,6 +142,9 @@
     <Compile Include="Frame\WpfDispatchService.cs" />
     <Compile Include="Frame\XamlStatic.cs" />
     <Compile Include="MainApp\ActivateExceptionAppDialog.cs" />
+    <Compile Include="MainApp\AlertView.xaml.cs">
+      <DependentUpon>AlertView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainApp\AppDialogAdapterViewModel.cs" />
     <Compile Include="MainApp\AppDialogsView.xaml.cs">
       <DependentUpon>AppDialogsView.xaml</DependentUpon>
@@ -155,6 +160,8 @@
     <Compile Include="MainApp\ExceptionDialogViewModel.cs" />
     <Compile Include="MainApp\FileOpsSaga.cs" />
     <Compile Include="MainApp\MainAppShortcuts.cs" />
+    <Compile Include="MainApp\Alerting.cs" />
+    <Compile Include="MainApp\Messages\ExceptionMsg.cs" />
     <Compile Include="MainApp\Messages\IRefocusEditor.cs" />
     <Compile Include="MainApp\Messages\NewFileMsg.cs" />
     <Compile Include="MainApp\Messages\OpenFileUiMsg.cs" />
@@ -196,6 +203,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainApp\AlertView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainApp\AppDialogAdapterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,7 +240,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <EmbeddedResource Include="help.md" />
     <None Include="packages.config" />
     <AppDesigner Include="Properties\" />

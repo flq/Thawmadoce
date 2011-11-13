@@ -19,9 +19,12 @@ namespace Thawmadoce.MainApp
 
         public void Handle(ActivateAppDialog msg)
         {
-            var vm = new AppDialogAdapterViewModel(msg.ViewModel, _svc);
-            vm.Deactivated += HandleDeactivation;
-            _appDialogs.Add(vm);
+            _svc.EnsureActionOnDispatcher(() =>
+                                              {
+                                                  var vm = new AppDialogAdapterViewModel(msg.ViewModel, _svc);
+                                                  vm.Deactivated += HandleDeactivation;
+                                                  _appDialogs.Add(vm);
+                                              });
         }
 
         private void HandleDeactivation(object sender, DeactivationEventArgs e)

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Thawmadoce.RfSitesPublishing
 {
-    public class PublishingViewModel
+    public class PublishingViewModel : IHasTitle
     {
         private const string StoreKey = "PublishingViewModel.Servers";
         
@@ -23,6 +23,11 @@ namespace Thawmadoce.RfSitesPublishing
             PublishDate = DateTime.Today;
             Time = DateTime.UtcNow.ToShortTimeString();
             LoadStoredServers();
+        }
+
+        string IHasTitle.Title
+        {
+            get { return "RfSites Publishing"; }
         }
 
         public string Title { get; set; }

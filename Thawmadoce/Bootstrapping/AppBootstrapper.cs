@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using Thawmadoce.Frame.Extensions;
+﻿using Thawmadoce.Frame.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,22 +36,7 @@ namespace Thawmadoce.Bootstrapping
 
         protected override IEnumerable<System.Reflection.Assembly> SelectAssemblies()
         {
-            var plugins = new List<Assembly>();
-            if (Directory.Exists("plugins"))
-            {
-                foreach (var f in Directory.GetFiles("plugins", "*.dll"))
-                {
-                    try
-                    {
-                        plugins.Add(Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory(), f)));
-                    }
-                    catch (Exception x)
-                    {
-                        Debug.WriteLine("Assembly load failed!");
-                    }
-                }
-            }
-            return GetType().Assembly.ToEnumerable().Concat(plugins);
+            return AssemblyPool.ApplicationAssemblies();
         }
 
         protected override void BuildUp(object instance)

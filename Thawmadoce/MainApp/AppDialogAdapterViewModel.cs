@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows.Input;
-using System.Windows.Threading;
+using System.Windows.Media;
 using Caliburn.Micro;
+using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Extensions;
 
@@ -19,6 +19,8 @@ namespace Thawmadoce.MainApp
             _svc = svc;
             Dialog = dialog;
             Dialog.As<IDeactivate>(d => d.Deactivated += HandleDeactivation);
+            Dialog.As<IHasTitle>(d => Title = d.Title);
+            TrySetTitleColor(Dialog);
             Close = new RelayCommand(DoClose);
         }
 
@@ -31,6 +33,10 @@ namespace Thawmadoce.MainApp
         }
 
         public object Dialog { get; private set; }
+
+        public Brush TitleColor { get; private set; }
+
+        public string Title { get; private set; }
 
         public ICommand Close { get; private set; }
 
@@ -51,6 +57,7 @@ namespace Thawmadoce.MainApp
         }
 
         public event EventHandler<DeactivationEventArgs> AttemptingDeactivation;
+
         public event EventHandler<DeactivationEventArgs> Deactivated;
 
         public bool CloseTrigger
@@ -65,5 +72,25 @@ namespace Thawmadoce.MainApp
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void TrySetTitleColor(object dialog)
+        {
+            TitleColor = new SolidColorBrush(Colors.Black);
+            dialog.As<IHaveAlertType>(at =>
+                                          {
+                                              switch (at.AlertType)
+                                              {
+                                                  case AlertType.Information:
+                                                      TitleColor = new SolidColorBrush(Colors.Green);
+                                                      break;
+                                                  case AlertType.Warning:
+                                                      TitleColor = new SolidColorBrush(Colors.DarkViolet);
+                                                      break;
+                                                  case AlertType.Error:
+                                                      TitleColor = new SolidColorBrush(Colors.OrangeRed);
+                                                      break;
+                                              }
+                                          });
+        }
     }
 }

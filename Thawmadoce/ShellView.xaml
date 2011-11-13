@@ -10,7 +10,6 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition  Height="*"/>
-                <RowDefinition  Height="Auto"/>
             </Grid.RowDefinitions>
             <ContentControl x:Name="Editor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
             <ContentControl x:Name="AppItems" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,2,100,0" />
