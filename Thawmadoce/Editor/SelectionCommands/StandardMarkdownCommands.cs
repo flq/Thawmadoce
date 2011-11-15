@@ -1,11 +1,19 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Thawmadoce.Extensibility;
+using Thawmadoce.Frame;
 
 namespace Thawmadoce.Editor.SelectionCommands
 {
     public class StandardMarkdownCommands : ISelectionPlugin
     {
+        private readonly IUserInteraction _userInteraction;
+
+        public StandardMarkdownCommands(IUserInteraction userInteraction)
+        {
+            _userInteraction = userInteraction;
+        }
+
         public IEnumerable<IVisibleCommand> GetCommands(TextContext selectionText)
         {
             yield return new EncloseSelectionInSomething(selectionText, "__")
@@ -61,7 +69,7 @@ namespace Thawmadoce.Editor.SelectionCommands
                              {
                                  CommandText = "Unnumbered list",
                                  CommandIcon = "/Thawmadoce;component/Media/format_list_unordered.png",
-                                 KeyCombination = new KeyCombo(Key.L, ModifierKeys.Control | ModifierKeys.Shift)
+                                 KeyCombination = new KeyCombo(Key.M, ModifierKeys.Control | ModifierKeys.Shift)
                              };
             yield return new ToCode(selectionText)
             {
@@ -70,11 +78,11 @@ namespace Thawmadoce.Editor.SelectionCommands
                 KeyCombination = new KeyCombo(Key.C, ModifierKeys.Control | ModifierKeys.Shift)
             };
 
-            yield return new SelectionToLink(selectionText)
+            yield return new SelectionToLink(selectionText, _userInteraction)
             {
-                CommandText = "Code",
+                CommandText = "Add Link",
                 CommandIcon = "/Thawmadoce;component/Media/code-icon.png",
-                KeyCombination = new KeyCombo(Key.C, ModifierKeys.Control | ModifierKeys.Shift)
+                KeyCombination = new KeyCombo(Key.L, ModifierKeys.Control | ModifierKeys.Shift)
             };
         }
     }

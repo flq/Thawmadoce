@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Thawmadoce.Extensibility;
 
 namespace Thawmadoce.Testing
@@ -15,6 +11,7 @@ namespace Thawmadoce.Testing
         private const string TextWithNewlineWithoutReference = "The brown fox\r\n";
         private const string TextWithoutNewlineWithoutReference = "The brown fox";
         private const string TextWithReference = "The brown fox\r\n\r\n  [1]: hiho";
+        private const string TextWithTwoReferences = "The brown fox\r\n\r\n  [1]: hiho\r\n  [2]: hehe";
 
 
         private void StartWithThisText(string text, string selection = "")
@@ -56,7 +53,7 @@ namespace Thawmadoce.Testing
         {
             StartWithThisText(TextWithNewlineWithoutReference);
             _textCtx.AppendReference("jonesy");
-            ThisWasAppended("\r\n[1]: jonesy\r\n");
+            ThisWasAppended("\r\n  [1]: jonesy");
         }
 
         [Test]
@@ -64,7 +61,7 @@ namespace Thawmadoce.Testing
         {
             StartWithThisText(TextWithoutNewlineWithoutReference);
             _textCtx.AppendReference("jonesy");
-            ThisWasAppended("\r\n\r\n[1]: jonesy\r\n");
+            ThisWasAppended("\r\n\r\n  [1]: jonesy");
         }
 
         [Test]
@@ -72,7 +69,7 @@ namespace Thawmadoce.Testing
         {
             StartWithThisText(TextWithReference);
             _textCtx.AppendReference("jonesy");
-            ThisWasAppended("\r\n[2]: jonesy\r\n");
+            ThisWasAppended("\r\n  [2]: jonesy");
         }
 
         [Test]
@@ -81,7 +78,15 @@ namespace Thawmadoce.Testing
             StartWithThisText(TextWithReference);
             _textCtx.AppendReference("A");
             _textCtx.AppendReference("B");
-            ThisWasAppended("\r\n[2]: A\r\n[3]: B\r\n");
+            ThisWasAppended("\r\n  [2]: A\r\n  [3]: B");
+        }
+
+        [Test]
+        public void AppendWithTwoRefsDefined()
+        {
+            StartWithThisText(TextWithTwoReferences);
+            _textCtx.AppendReference("A");
+            ThisWasAppended("\r\n  [3]: A");
         }
 
         private void ThisWasAppended(string appendage)

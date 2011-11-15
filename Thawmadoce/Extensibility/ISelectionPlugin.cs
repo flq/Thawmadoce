@@ -62,10 +62,10 @@ namespace Thawmadoce.Extensibility
 
                 foreach (var appendage in _appendages)
                 {
-                    sb.AppendFormat("[{0}]: {1}{2}", nextRef, appendage, Environment.NewLine);
+                    sb.AppendFormat("  [{0}]: {1}{2}", nextRef, appendage, Environment.NewLine);
                     nextRef++;
                 }
-                return sb.ToString();
+                return sb.Remove(sb.Length-2, 2).ToString();
             }
         }
 

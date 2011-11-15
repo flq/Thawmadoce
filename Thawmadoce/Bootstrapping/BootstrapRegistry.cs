@@ -20,6 +20,7 @@ namespace Thawmadoce.Bootstrapping
         public BootstrapRegistry()
         {
             ForSingletonOf<IWindowManager>().Use(new WindowManager());
+            ForSingletonOf<IUserInteraction>().Use<UserInteraction>();
             ForSingletonOf<ShellViewModel>().Use<ShellViewModel>();
             For<IGestureService>().Use(ctx => ctx.GetInstance<ShellViewModel>().GestureService);
             Forward<ShellViewModel,IGestureService>();

@@ -121,6 +121,7 @@
     <Compile Include="Bootstrapping\IStartupTask.cs" />
     <Compile Include="Bootstrapping\WireUpSagasToMessaging.cs" />
     <Compile Include="Editor\EditorKeyShortcuts.cs" />
+    <Compile Include="Editor\EnterLinkViewModel.cs" />
     <Compile Include="Editor\MarkdownEditor.xaml.cs">
       <DependentUpon>MarkdownEditor.xaml</DependentUpon>
     </Compile>
@@ -157,7 +158,9 @@
     <Compile Include="Frame\Extensions\ObservableCollection.cs" />
     <Compile Include="Frame\Extensions\Useful.cs" />
     <Compile Include="Frame\Extensions\ViewModelExtensions.cs" />
+    <Compile Include="Frame\FocusBehavior.cs" />
     <Compile Include="Frame\GestureService.cs" />
+    <Compile Include="Frame\IUserInteraction.cs" />
     <Compile Include="Frame\QuickGrid.cs" />
     <Compile Include="Frame\IDispatchServices.cs" />
     <Compile Include="Frame\IGestureService.cs" />
@@ -173,6 +176,7 @@
     <Compile Include="Frame\RelayCommand.cs" />
     <Compile Include="Frame\StructuremapBridge.cs" />
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
+    <Compile Include="Frame\UserInteraction.cs" />
     <Compile Include="Frame\WpfDispatchService.cs" />
     <Compile Include="Frame\XamlStatic.cs" />
     <Compile Include="MainApp\ActivateExceptionAppDialog.cs" />
@@ -218,6 +222,10 @@
     </Compile>
     <Compile Include="Bootstrapping\AppBootstrapper.cs" />
     <Compile Include="MainApp\CommonAppItems.cs" />
+    <Page Include="Editor\EnterLinkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Editor\MarkdownEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
