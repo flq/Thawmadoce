@@ -45,12 +45,13 @@ namespace Thawmadoce.Extensibility
             _appendages.Add(referenceText);
         }
 
+        public bool HasTextToAppend { get { return _appendages.Count > 0; } }
+
         public string TextToAppend
         {
             get
             {
-                if (_appendages.Count == 0)
-                    return null;
+                if (!HasTextToAppend) return null;
                 var nextRef = NextRefFromCurrentText();
                 
                 var sb = new StringBuilder();
@@ -90,6 +91,11 @@ namespace Thawmadoce.Extensibility
         public void ReplaceSelection(string newSelection)
         {
             CurrentSelection = newSelection;
+        }
+
+        public void ReplaceSelection(string newSelection, params object[] args)
+        {
+            CurrentSelection = string.Format(newSelection, args);
         }
 
         private int FindLastReference()

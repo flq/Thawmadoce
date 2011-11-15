@@ -11,6 +11,9 @@ namespace Thawmadoce.Editor.SelectionCommands
 
         protected override TextContext Execute()
         {
+            var nextRefId = TextContext.NextReferenceId;
+            TextContext.ReplaceSelection("[{0}][{1}]", TextContext.CurrentSelection, nextRefId);
+            TextContext.AppendReference("http://whatafunthing");
             return TextContext;
         }
     }

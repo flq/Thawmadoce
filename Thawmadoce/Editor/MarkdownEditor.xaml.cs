@@ -78,7 +78,7 @@ namespace Thawmadoce.Editor
         }
 
         public static readonly DependencyProperty TextAppendCommandsProperty =
-          DependencyProperty.Register("FocusCommands", typeof(IObservable<AppendTextUiMsg>), typeof(MarkdownEditor), new PropertyMetadata(HandleTextAppendCommandsChanged));
+          DependencyProperty.Register("TextAppendCommands", typeof(IObservable<AppendTextUiMsg>), typeof(MarkdownEditor), new PropertyMetadata(HandleTextAppendCommandsChanged));
 
         public IObservable<AppendTextUiMsg> TextAppendCommands
         {

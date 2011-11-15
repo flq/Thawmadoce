@@ -115,6 +115,8 @@ namespace Thawmadoce.Editor
         private void AfterCommandModifiedSelection(TextContext newText)
         {
             CurrentSelection = newText.CurrentSelection;
+            if (newText.HasTextToAppend)
+                _publisher.Publish(new AppendTextUiMsg(newText.TextToAppend));
             _gestureSvcFactory().RemoveInputBindings(_commandKeysScope);
             _commandKeysScope = null;
             SelectionCommands.Clear();
