@@ -81,7 +81,7 @@ namespace Thawmadoce.Editor.SelectionCommands
             yield return new SelectionToLink(selectionText, _userInteraction)
             {
                 CommandText = "Add Link",
-                CommandIcon = "/Thawmadoce;component/Media/code-icon.png",
+                CommandIcon = "/Thawmadoce;component/Media/link.png",
                 KeyCombination = new KeyCombo(Key.L, ModifierKeys.Control | ModifierKeys.Shift)
             };
         }
