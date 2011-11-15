@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thawmadoce", "Thawmadoce\Th
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thawmadoce.RfSitesPublishing", "Thawmadoce.RfSitesPublishing\Thawmadoce.RfSitesPublishing.csproj", "{BCC96A1E-6BFC-4570-A9BA-C52F845B9734}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thawmadoce.Testing", "Thawmadoce.Testing\Thawmadoce.Testing.csproj", "{363AD3DE-B838-4FC0-838A-EEDC74D53401}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,8 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FD550B60-B9F5-45D5-B399-4B75EA8E8BBE}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{FD550B60-B9F5-45D5-B399-4B75EA8E8BBE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{FD550B60-B9F5-45D5-B399-4B75EA8E8BBE}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{FD550B60-B9F5-45D5-B399-4B75EA8E8BBE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FD550B60-B9F5-45D5-B399-4B75EA8E8BBE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{FD550B60-B9F5-45D5-B399-4B75EA8E8BBE}.Debug|x86.ActiveCfg = Debug|x86
 		{FD550B60-B9F5-45D5-B399-4B75EA8E8BBE}.Debug|x86.Build.0 = Debug|x86
 		{FD550B60-B9F5-45D5-B399-4B75EA8E8BBE}.Release|Any CPU.ActiveCfg = Release|x86
@@ -35,6 +37,16 @@ Global
 		{BCC96A1E-6BFC-4570-A9BA-C52F845B9734}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BCC96A1E-6BFC-4570-A9BA-C52F845B9734}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BCC96A1E-6BFC-4570-A9BA-C52F845B9734}.Release|x86.ActiveCfg = Release|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{363AD3DE-B838-4FC0-838A-EEDC74D53401}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

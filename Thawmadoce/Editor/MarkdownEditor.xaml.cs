@@ -31,29 +31,6 @@ namespace Thawmadoce.Editor
             set { SetValue(CurrentSelectionProperty, value); }
         }
 
-        public static readonly DependencyProperty FocusCommandsProperty =
-            DependencyProperty.Register("FocusCommands", typeof(IObservable<IRefocusEditor>), typeof(MarkdownEditor), new PropertyMetadata(HandleFocusCommandsChanged));
-
-        public IObservable<IRefocusEditor> FocusCommands
-        {
-            get { return (IObservable<IRefocusEditor>) GetValue(FocusCommandsProperty); }
-            set { SetValue(FocusCommandsProperty, value); }
-        }
-
-        private static void HandleFocusCommandsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (e.NewValue != null)
-            {
-                var me = (MarkdownEditor) d;
-                me.SetFocusCommandStream((IObservable<IRefocusEditor>) e.NewValue);
-            }
-        }
-
-        private void SetFocusCommandStream(IObservable<IRefocusEditor> refocusStream)
-        {
-            refocusStream.Subscribe(_ => FocusMeth());
-        }
-
         private static void HandleCurrentSelectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var me = (MarkdownEditor)d;
@@ -80,6 +57,42 @@ namespace Thawmadoce.Editor
             SelectedText = string.Empty;
             CurrentSelection = string.Empty;
             FocusMeth();
+        }
+
+        public static readonly DependencyProperty FocusCommandsProperty =
+          DependencyProperty.Register("FocusCommands", typeof(IObservable<IRefocusEditor>), typeof(MarkdownEditor), new PropertyMetadata(HandleFocusCommandsChanged));
+
+        public IObservable<IRefocusEditor> FocusCommands
+        {
+            get { return (IObservable<IRefocusEditor>)GetValue(FocusCommandsProperty); }
+            set { SetValue(FocusCommandsProperty, value); }
+        }
+
+        private static void HandleFocusCommandsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null)
+            {
+                var me = (MarkdownEditor)d;
+                ((IObservable<IRefocusEditor>)e.NewValue).Subscribe(_ => me.FocusMeth());
+            }
+        }
+
+        public static readonly DependencyProperty TextAppendCommandsProperty =
+          DependencyProperty.Register("FocusCommands", typeof(IObservable<AppendTextUiMsg>), typeof(MarkdownEditor), new PropertyMetadata(HandleTextAppendCommandsChanged));
+
+        public IObservable<AppendTextUiMsg> TextAppendCommands
+        {
+            get { return (IObservable<AppendTextUiMsg>)GetValue(FocusCommandsProperty); }
+            set { SetValue(FocusCommandsProperty, value); }
+        }
+
+        private static void HandleTextAppendCommandsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.NewValue != null)
+            {
+                var me = (MarkdownEditor)d;
+                ((IObservable<AppendTextUiMsg>)e.NewValue).Subscribe(msg => me.AppendText(msg.Text));
+            }
         }
 
         private void HandleLoaded(object sender, RoutedEventArgs e)

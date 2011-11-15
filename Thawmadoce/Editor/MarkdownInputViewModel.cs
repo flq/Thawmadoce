@@ -29,12 +29,14 @@ namespace Thawmadoce.Editor
             IPublisher publisher, 
             Func<IGestureService> gestureSvcFactory,  
             IObservable<IRefocusEditor> refocusEditorStream,
+            IObservable<AppendTextUiMsg> appendTextStream,
             ISelectionPlugin[] selectionPlugins)
         {
             _publisher = publisher;
             _gestureSvcFactory = gestureSvcFactory;
             _selectionPlugins = selectionPlugins;
             RefocusEditorStream = refocusEditorStream;
+            TextAppendStream = appendTextStream;
             _typingTimer = new Timer(TimerCallback);
         }
 
@@ -44,6 +46,7 @@ namespace Thawmadoce.Editor
         }
 
         public IObservable<IRefocusEditor> RefocusEditorStream { get; private set; }
+        public IObservable<AppendTextUiMsg> TextAppendStream { get; private set; }
 
         public string MarkdownText
         {
