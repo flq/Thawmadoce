@@ -96,7 +96,7 @@ namespace Thawmadoce.Editor
 
                 SelectionCommands.ClearAndAddRange(
                     _selectionPlugins
-                      .SelectMany(p => p.GetCommands(_currentSelection))
+                      .SelectMany(p => p.GetCommands(new TextContext(_currentSelection, _markdownText)))
                       .Pipeline(cmd => cmd.As<ISelectionCommandWireup>(w => w.AfterModificationCallback(AfterCommandModifiedSelection)))
                       .Pipeline(cmd => { if (cmd.HasKeyBinding) _gestureSvcFactory().AddKeyBinding(cmd.KeyBinding, _commandKeysScope); })
                 );
@@ -109,9 +109,9 @@ namespace Thawmadoce.Editor
             }
         }
 
-        private void AfterCommandModifiedSelection(string newText)
+        private void AfterCommandModifiedSelection(TextContext newText)
         {
-            CurrentSelection = newText;
+            CurrentSelection = newText.CurrentSelection;
             _gestureSvcFactory().RemoveInputBindings(_commandKeysScope);
             _commandKeysScope = null;
             SelectionCommands.Clear();

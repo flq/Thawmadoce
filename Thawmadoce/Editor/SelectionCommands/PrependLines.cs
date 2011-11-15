@@ -7,14 +7,15 @@ namespace Thawmadoce.Editor.SelectionCommands
     {
         private readonly string _prefix;
 
-        public PrependLines(string selectionText, string prefix) : base(selectionText)
+        public PrependLines(TextContext textContext, string prefix) : base(textContext)
         {
             _prefix = prefix;
         }
 
-        protected override string Execute()
+        protected override TextContext Execute()
         {
-            return _prefix + SelectionText.Replace(Environment.NewLine, Environment.NewLine + _prefix);
+            TextContext.ReplaceSelection(_prefix + TextContext.CurrentSelection.Replace(Environment.NewLine, Environment.NewLine + _prefix));
+            return TextContext;
         }
     }
 }

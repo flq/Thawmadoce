@@ -6,7 +6,7 @@ namespace Thawmadoce.Editor.SelectionCommands
 {
     public class StandardMarkdownCommands : ISelectionPlugin
     {
-        public IEnumerable<IVisibleCommand> GetCommands(string selectionText)
+        public IEnumerable<IVisibleCommand> GetCommands(TextContext selectionText)
         {
             yield return new EncloseSelectionInSomething(selectionText, "__")
                              {
@@ -64,6 +64,13 @@ namespace Thawmadoce.Editor.SelectionCommands
                                  KeyCombination = new KeyCombo(Key.L, ModifierKeys.Control | ModifierKeys.Shift)
                              };
             yield return new ToCode(selectionText)
+            {
+                CommandText = "Code",
+                CommandIcon = "/Thawmadoce;component/Media/code-icon.png",
+                KeyCombination = new KeyCombo(Key.C, ModifierKeys.Control | ModifierKeys.Shift)
+            };
+
+            yield return new SelectionToLink(selectionText)
             {
                 CommandText = "Code",
                 CommandIcon = "/Thawmadoce;component/Media/code-icon.png",

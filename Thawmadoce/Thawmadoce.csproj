@@ -102,6 +102,7 @@
     <Compile Include="Editor\SelectionCommands\EncloseSelectionInSomething.cs" />
     <Compile Include="Editor\SelectionCommands\ISelectionCommandWireup.cs" />
     <Compile Include="Editor\SelectionCommands\PrependLines.cs" />
+    <Compile Include="Editor\SelectionCommands\SelectionToLink.cs" />
     <Compile Include="Editor\SelectionCommands\StandardMarkdownCommands.cs" />
     <Compile Include="Editor\SelectionCommands\ToCode.cs" />
     <Compile Include="Extensibility\IAppItemsPlugin.cs" />

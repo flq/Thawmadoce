@@ -1,18 +1,21 @@
 ﻿using System;
+using Thawmadoce.Extensibility;
 
 namespace Thawmadoce.Editor.SelectionCommands
 {
     public class ToCode : PrependLines
     {
-        public ToCode(string selectionText) : base(selectionText, "    ")
+        public ToCode(TextContext textContext) : base(textContext, "    ")
         {
         }
 
-        protected override string Execute()
+        protected override TextContext Execute()
         {
-            if (SelectionText.Contains(Environment.NewLine))
+            var selection = TextContext.CurrentSelection;
+            if (selection.Contains(Environment.NewLine))
                 return base.Execute();
-            return "`" + SelectionText + "`";
+            TextContext.ReplaceSelection("`" + selection + "`");
+            return TextContext;
         }
     }
 }

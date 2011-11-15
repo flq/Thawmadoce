@@ -8,24 +8,26 @@ namespace Thawmadoce.Editor.SelectionCommands
         private readonly string _prefixString;
         private readonly string _postFixString;
 
-        public EncloseSelectionInSomething(string selectionText, string enclosingString) : this(selectionText, enclosingString, enclosingString)
+        public EncloseSelectionInSomething(TextContext textContext, string enclosingString) : this(textContext, enclosingString, enclosingString)
         {
             
         }
 
-        public EncloseSelectionInSomething(string selectionText, string prefixString, string postFixString) : base(selectionText)
+        public EncloseSelectionInSomething(TextContext textContext, string prefixString, string postFixString) : base(textContext)
         {
             _prefixString = prefixString;
             _postFixString = postFixString;
         }
 
-        protected override string Execute()
+        protected override TextContext Execute()
         {
             var sb = new StringBuilder();
+
             sb.Append(_prefixString);
-            sb.Append(SelectionText);
+            sb.Append(TextContext.CurrentSelection);
             sb.Append(_postFixString);
-            return sb.ToString();
+            TextContext.ReplaceSelection(sb.ToString());
+            return  TextContext;
         }
     }
 }

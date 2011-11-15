@@ -8,12 +8,12 @@ namespace Thawmadoce.Extensibility
     /// </summary>
     public abstract class SelectionCommand : VisibleCommand, ISelectionCommandWireup
     {
-        protected readonly string SelectionText;
-        private Action<string> _newSelection;
+        protected readonly TextContext TextContext;
+        private Action<TextContext> _newSelection;
 
-        protected SelectionCommand(string selectionText)
+        protected SelectionCommand(TextContext textContext)
         {
-            SelectionText = selectionText;
+            TextContext = textContext;
         }
 
         protected override void InternalExecute()
@@ -23,7 +23,7 @@ namespace Thawmadoce.Extensibility
                 _newSelection(newString);
         }
 
-        void ISelectionCommandWireup.AfterModificationCallback(Action<string> newSelection)
+        void ISelectionCommandWireup.AfterModificationCallback(Action<TextContext> newSelection)
         {
             _newSelection = newSelection;
         }
@@ -31,6 +31,6 @@ namespace Thawmadoce.Extensibility
         /// <summary>
         /// called when the user triggers this command. Return value is the slection after the modification.
         /// </summary>
-        protected abstract string Execute();
+        protected abstract TextContext Execute();
     }
 }
