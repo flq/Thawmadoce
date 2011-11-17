@@ -1,7 +1,3 @@
-using System;
-using System.Diagnostics;
-using System.Windows.Input;
-using MarkdownSharp;
 using MemBus;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Extensions;
@@ -12,7 +8,6 @@ namespace Thawmadoce.Editor
     {
 
         private readonly IPublisher _publisher;
-        private readonly Markdown _markdown = new Markdown();
         private string _lastMarkdownText;
 
         public MarkdownInputViewModel Editor { get; set; }
@@ -30,7 +25,7 @@ namespace Thawmadoce.Editor
         public void Handle(NewMarkdownTaskMsg msg)
         {
             _lastMarkdownText = msg.MarkdownText;
-            var html = _markdown.Transform(_lastMarkdownText);
+            var html = _lastMarkdownText.ToHtml();
             _publisher.Publish(new NewHtmlMsg(html));
         }
 

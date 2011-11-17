@@ -1,6 +1,8 @@
+using System;
 using System.IO;
 using MemBus;
 using Microsoft.Win32;
+using Microsoft.Win32.SafeHandles;
 using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame.Messaging;
@@ -88,7 +90,19 @@ namespace Thawmadoce.MainApp
                 {
                     sw.Write(_lastCapturedMarkdown);
                 }
+                using ( var fs = new FileStream(HtmlFile(_currentSaveFile), FileMode.Create))
+                using (var sw = new StreamWriter(fs))
+                {
+                    sw.Write(_lastCapturedMarkdown.ToHtml());
+                }
             }
+        }
+
+        private string HtmlFile(string currentSaveFile)
+        {
+            var file = Path.GetFileNameWithoutExtension(currentSaveFile);
+            var path = Path.GetDirectoryName(currentSaveFile);
+            return Path.Combine(path, file + ".html");
         }
 
         private static string OpenFile(string fileName)
