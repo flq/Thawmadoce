@@ -75,7 +75,6 @@ namespace Thawmadoce.MainApp
 
         private void TrySetTitleColor(object dialog)
         {
-            TitleColor = new SolidColorBrush(Colors.Black);
             dialog.As<IHaveAlertType>(at =>
                                           {
                                               switch (at.AlertType)

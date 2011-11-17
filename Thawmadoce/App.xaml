@@ -14,17 +14,15 @@
                     <Converters:PathToImageSourceConverter x:Key="PathToImg" />
 
                     <LinearGradientBrush x:Key="Blueback_Inverse" EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#EBEBEB" Offset="0"/>
-                        <GradientStop Color="#FF537FB6" Offset="0.5"/>
-                        <GradientStop Color="#FFA1C6F3" Offset="0.048"/>
-                        <GradientStop Color="#FFABC3E2" Offset="1"/>
+
+                        <GradientStop Color="#FFABABAB" Offset="0"/>
+                        <GradientStop Color="Black" Offset="1"/>
                     </LinearGradientBrush>
 
                     <LinearGradientBrush x:Key="Blueback" EndPoint="0,1" StartPoint="0,0">
-                        <GradientStop Color="#FFA1C6F3" Offset="0"/>
-                        <GradientStop Color="#EBEBEB" Offset="0.564"/>
-                        <GradientStop Color="#FFABC3E2" Offset="0.204"/>
-                        <GradientStop Color="#FF537FB6" Offset="1"/>
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="#FF5A5A5A" Offset="1"/>
+                        <GradientStop Color="Black" Offset="0.732"/>
                     </LinearGradientBrush>
                     
                     <Style x:Key="Button_VisibleCommand" TargetType="{x:Type Button}">
@@ -49,7 +47,7 @@
                                             <Setter Property="Cursor" Value="Hand" />
                                             <Setter Property="Effect" TargetName="cnt">
                                                 <Setter.Value>
-                                                    <DropShadowEffect ShadowDepth="3" Color="Yellow" BlurRadius="10" />
+                                                    <DropShadowEffect ShadowDepth="3" Color="Gray" BlurRadius="10" />
                                                 </Setter.Value>
                                             </Setter>
                                         </Trigger>

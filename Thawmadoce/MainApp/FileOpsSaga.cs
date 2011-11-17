@@ -10,6 +10,8 @@ namespace Thawmadoce.MainApp
 {
     public class FileOpsSaga : ISaga
     {
+        private const string FileFilter = "Markdown (*.md)|*.md|Text files (*.txt)|*.txt|All Files (*.*)|*.*";
+
         private readonly IPublisher _publisher;
         private readonly ISettings _settings;
         private string _currentSaveFile;
@@ -32,7 +34,7 @@ namespace Thawmadoce.MainApp
 
         public void Handle(OpenFileUiMsg msg)
         {
-            var dlg = new OpenFileDialog { DefaultExt = ".md", Filter = "Markdown (*.md)|*.md" };
+            var dlg = new OpenFileDialog { DefaultExt = ".md", Filter = FileFilter };
             var result = dlg.ShowDialog();
 
             if (result == false || !File.Exists(dlg.FileName))
@@ -44,7 +46,7 @@ namespace Thawmadoce.MainApp
 
         public void Handle(SaveFileUiMsg msg)
         {
-            var dlg = new SaveFileDialog { DefaultExt = ".md", Filter = "Markdown (*.md)|*.md" };
+            var dlg = new SaveFileDialog { DefaultExt = ".md", Filter = FileFilter };
             var result = dlg.ShowDialog();
 
             if (result == true)

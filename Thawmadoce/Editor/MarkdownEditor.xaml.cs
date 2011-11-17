@@ -14,9 +14,6 @@ namespace Thawmadoce.Editor
         public MarkdownEditor()
         {
             InitializeComponent();
-            TextWrapping = TextWrapping.Wrap;
-            AcceptsReturn = true;
-            AcceptsTab = true;
             Loaded += HandleLoaded;
             IsVisibleChanged += HandleVisibleChanged;
             SelectionChanged += HandleSelectionChanged;

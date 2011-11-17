@@ -6,12 +6,15 @@
              xmlns:Frame="clr-namespace:Thawmadoce.Frame" xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" mc:Ignorable="d">
     <Frame:ItemsWithContentContainer 
                       x:Name="AppDialogs" 
-                      Background="{StaticResource Blueback_Inverse}"
+                      Background="Black"
                       MaxHeight="300">
         <Frame:ItemsWithContentContainer.Resources>
             <ControlTemplate x:Key="DialogTemplate" TargetType="{x:Type ContentControl}">
                 <StackPanel MinWidth="100" VerticalAlignment="Stretch">
-                    <Border BorderThickness="1" BorderBrush="{Binding TitleColor}" CornerRadius="10,10,0,0" Background="{Binding TitleColor}">
+                    <Border BorderThickness="1" 
+                            BorderBrush="{Binding TitleColor}" 
+                            Background="{Binding TitleColor,TargetNullValue={StaticResource Blueback_Inverse}}"
+                            CornerRadius="10,10,0,0" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />

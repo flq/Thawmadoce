@@ -2,7 +2,7 @@
     x:Class="Thawmadoce.Editor.MarkdownInputView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Editor="clr-namespace:Thawmadoce.Editor" Background="LightBlue">
+    xmlns:Editor="clr-namespace:Thawmadoce.Editor">
     <UserControl.Resources>
         <ResourceDictionary Source="MarkdownInputViewResources.xaml" />
     </UserControl.Resources>
@@ -26,7 +26,7 @@
           CurrentSelection="{Binding CurrentSelection, Mode=TwoWay}" 
           FocusCommands="{Binding RefocusEditorStream, Mode=OneWay}"
           TextAppendCommands="{Binding TextAppendStream, Mode=OneWay}"
-          Margin="2,2,2,2"
+          Margin="2"
           HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch" />
     </Grid>
