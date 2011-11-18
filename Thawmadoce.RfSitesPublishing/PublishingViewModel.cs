@@ -23,6 +23,7 @@ namespace Thawmadoce.RfSitesPublishing
             PublishDate = DateTime.Today;
             Time = DateTime.UtcNow.ToShortTimeString();
             LoadStoredServers();
+            _publisher.Publish(new QueryPotentialTitleUiMsg(pt => Title = pt));
         }
 
         string IHasTitle.Title

@@ -199,6 +199,7 @@
     <Compile Include="MainApp\FileOpsSaga.cs" />
     <Compile Include="MainApp\MainAppShortcuts.cs" />
     <Compile Include="MainApp\Alerting.cs" />
+    <Compile Include="MainApp\Messages\NewDisplayNameUiMsg.cs" />
     <Compile Include="MainApp\Messages\ExceptionMsg.cs" />
     <Compile Include="MainApp\Messages\IRefocusEditor.cs" />
     <Compile Include="MainApp\Messages\NewFileMsg.cs" />

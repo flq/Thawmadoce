@@ -19,7 +19,7 @@ namespace Thawmadoce {
         private readonly IPublisher _publisher;
         private readonly GestureService _gestureSvc = new GestureService();
 
-        private string _title = "The awesome markdown centrifuge";
+        private const string Title = "The awesome markdown centrifuge";
 
         public MarkdownEditorViewModel Editor { get; set; }
         public AppItemsViewModel AppItems { get; set; }
@@ -31,6 +31,14 @@ namespace Thawmadoce {
             _publisher = publisher;
         }
 
+        public void Handle(NewDisplayNameUiMsg msg)
+        {
+            if (msg.IsTitleReset)
+                DisplayName = "Thawmadoce";
+            DisplayName = (msg.Append ? "Thawmadoce - " : "") + msg.NewTitle;
+            //NotifyOfPropertyChange(()=>DisplayName);
+        }
+
         public IGestureService GestureService
         {
             get { return _gestureSvc; }
@@ -40,7 +48,7 @@ namespace Thawmadoce {
         protected override void OnActivate()
         {
             this.ActivateAllChilds();
-            DisplayName = _title;
+            DisplayName = Title;
         }
 
         protected override void OnViewAttached(object view, object context)

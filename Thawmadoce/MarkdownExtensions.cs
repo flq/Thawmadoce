@@ -26,6 +26,7 @@ html, body {
         private const string End = "</body></html>";
         private static readonly Regex _nonEmptyLine = new Regex(@"^(.*?\S.*)$+", RegexOptions.RightToLeft | RegexOptions.Multiline);
         private static readonly Markdown _markdown = new Markdown();
+        private static readonly object _markdownDoesNotFeelThreadSafeMeThinks = new object();
 
         public static bool EndsOnNewLine(this string text)
         {
@@ -40,9 +41,12 @@ html, body {
 
         public static string ToHtml(this string markdowntext)
         {
+            string tx = null;
+            lock (_markdownDoesNotFeelThreadSafeMeThinks)
+                tx = _markdown.Transform(markdowntext);
             var sb = new StringBuilder();
             sb.AppendLine(Start);
-            sb.AppendLine(_markdown.Transform(markdowntext));
+            sb.AppendLine(tx);
             sb.AppendLine(End);
             return sb.ToString();
         }

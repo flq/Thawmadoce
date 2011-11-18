@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="PublishingViewModel.cs" />
     <Compile Include="PublishTextTaskMsg.cs" />
+    <Compile Include="QueryPotentialTitleUiMsg.cs" />
     <Compile Include="ServerModel.cs" />
   </ItemGroup>
   <ItemGroup>

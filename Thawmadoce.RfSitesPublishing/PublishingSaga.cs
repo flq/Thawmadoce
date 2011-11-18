@@ -5,6 +5,7 @@ using System.Web.Script.Serialization;
 using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;
 using Thawmadoce.MainApp;
+using System.Linq;
 
 namespace Thawmadoce.RfSitesPublishing
 {
@@ -12,6 +13,7 @@ namespace Thawmadoce.RfSitesPublishing
     {
         private readonly IMessagePublisher _publisher;
         private string _lastCapturedMarkdown;
+        private string _potentialTitle;
 
         public PublishingSaga(IMessagePublisher publisher)
         {
@@ -21,6 +23,18 @@ namespace Thawmadoce.RfSitesPublishing
         public void Handle(NewMarkdownTaskMsg msg)
         {
             _lastCapturedMarkdown = msg.MarkdownText;
+        }
+
+        public void Handle(NewDisplayNameUiMsg msg)
+        {
+            if (!msg.IsTitleReset && msg.NewTitle.EndsWith(".md"))
+                _potentialTitle = msg.NewTitle;
+        }
+
+        public void Handle(QueryPotentialTitleUiMsg msg)
+        {
+            if (_potentialTitle != null)
+                msg.SetTitle(_potentialTitle.Substring(0, _potentialTitle.Length -3));
         }
 
         public void Handle(PublishTextTaskMsg info)
@@ -65,7 +79,7 @@ namespace Thawmadoce.RfSitesPublishing
             var obj = new
                        {
                            title = info.Title,
-                           tags = info.Tags.Split(','),
+                           tags = GetTags(info.Tags),
                            publishdate = info.PublishDate,
                            isMarkdown = true,
                            body = _lastCapturedMarkdown
@@ -73,6 +87,11 @@ namespace Thawmadoce.RfSitesPublishing
             var ser = new JavaScriptSerializer();
             var json = ser.Serialize(obj);
             return Encoding.UTF8.GetBytes(json);
+        }
+
+        private static string[] GetTags(string tags)
+        {
+            return tags.Split(',').Select(s => s.Trim()).ToArray();
         }
     }
 }
