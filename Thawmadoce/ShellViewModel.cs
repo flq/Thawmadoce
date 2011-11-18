@@ -17,6 +17,7 @@ namespace Thawmadoce {
         private readonly IKeyboardOnlyActions[] _keyboardOnlyActions;
         private readonly IPublisher _publisher;
         private readonly GestureService _gestureSvc = new GestureService();
+        private bool _isTransparent = true;
 
         public WindowHeaderViewModel WindowHeader { get; set; }
         public MarkdownEditorViewModel Editor { get; set; }
@@ -29,12 +30,25 @@ namespace Thawmadoce {
             _publisher = publisher;
         }
 
+        public void Handle(TogglePreviewUiMsg msg)
+        {
+            IsTransparent = !IsTransparent;
+        }
 
         public IGestureService GestureService
         {
             get { return _gestureSvc; }
         }
 
+        public bool IsTransparent
+        {
+            get { return _isTransparent; }
+            private set
+            {
+                _isTransparent = value;
+                NotifyOfPropertyChange(()=>IsTransparent);
+            }
+        }
 
         protected override void OnActivate()
         {

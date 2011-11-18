@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Frame="clr-namespace:Thawmadoce.Frame" Icon="thawmadoce.ico" 
         WindowStyle="None" 
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="False" >
     <Grid>
         <ContentControl x:Name="WindowHeader" HorizontalAlignment="Stretch" VerticalAlignment="Top" Opacity="{StaticResource BorderOpacity}" />
         <Image Source="/Media/upper_left_fill.png" Margin="0,24,0,0" Width="9" Height="9" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="{StaticResource BorderOpacity}" /> 

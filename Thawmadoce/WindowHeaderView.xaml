@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Frame="clr-namespace:Thawmadoce.Frame" mc:Ignorable="d" Margin="0,2,0,0">
     <StackPanel Orientation="Horizontal" MouseLeftButtonDown="OnHeaderMouseDown">
-        <Image Source="/Media/window_left.png" Width="13" Height="25" />
-        <StackPanel Orientation="Horizontal" MinWidth="200" Background="Black">
+        <!--<Image Source="/Media/window_left.png" Width="13" Height="25" />-->
+        <StackPanel Orientation="Horizontal" MinWidth="200" Background="Black" Margin="20,0,0,0" >
             <Button Style="{StaticResource NakedButton}" Click="HandleCloseClick">
                 <Image Source="/Media/dialog_close_wdw.png" Width="16" Height="16" Frame:Second.Source="/Media/dialog_close2_wdw.png" />
             </Button>
@@ -17,6 +17,6 @@
             </Button>
             <TextBlock x:Name="Title" Foreground="White" Margin="15,2,0,0" />
         </StackPanel>
-        <Image Source="/Media/window_right.png" Width="57" Height="25" />
+        <!--<Image Source="/Media/window_right.png" Width="57" Height="25" />-->
     </StackPanel>
 </UserControl>
