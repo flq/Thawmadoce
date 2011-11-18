@@ -158,8 +158,10 @@
     <Compile Include="Frame\Extensions\ObservableCollection.cs" />
     <Compile Include="Frame\Extensions\Useful.cs" />
     <Compile Include="Frame\Extensions\ViewModelExtensions.cs" />
+    <Compile Include="Frame\Extensions\WpfExtensions.cs" />
     <Compile Include="Frame\FocusBehavior.cs" />
     <Compile Include="Frame\GestureService.cs" />
+    <Compile Include="Frame\Handle.cs" />
     <Compile Include="Frame\IUserInteraction.cs" />
     <Compile Include="Frame\QuickGrid.cs" />
     <Compile Include="Frame\IDispatchServices.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Frame\StructuremapBridge.cs" />
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
     <Compile Include="Frame\UserInteraction.cs" />
+    <Compile Include="Frame\WindowResizer.cs" />
     <Compile Include="Frame\WpfDispatchService.cs" />
     <Compile Include="Frame\XamlStatic.cs" />
     <Compile Include="MainApp\ActivateExceptionAppDialog.cs" />

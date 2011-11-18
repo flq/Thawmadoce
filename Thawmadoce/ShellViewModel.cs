@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
 using MemBus;
@@ -19,8 +18,6 @@ namespace Thawmadoce {
         private readonly IPublisher _publisher;
         private readonly GestureService _gestureSvc = new GestureService();
 
-        private const string Title = "The awesome markdown centrifuge";
-
         public WindowHeaderViewModel WindowHeader { get; set; }
         public MarkdownEditorViewModel Editor { get; set; }
         public AppItemsViewModel AppItems { get; set; }
@@ -32,13 +29,6 @@ namespace Thawmadoce {
             _publisher = publisher;
         }
 
-        public void Handle(NewDisplayNameUiMsg msg)
-        {
-            if (msg.IsTitleReset)
-                DisplayName = "Thawmadoce";
-            DisplayName = (msg.Append ? "Thawmadoce - " : "") + msg.NewTitle;
-            //NotifyOfPropertyChange(()=>DisplayName);
-        }
 
         public IGestureService GestureService
         {
@@ -49,7 +39,6 @@ namespace Thawmadoce {
         protected override void OnActivate()
         {
             this.ActivateAllChilds();
-            DisplayName = Title;
         }
 
         protected override void OnViewAttached(object view, object context)
