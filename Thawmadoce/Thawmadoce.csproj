@@ -223,6 +223,10 @@
     </Compile>
     <Compile Include="Bootstrapping\AppBootstrapper.cs" />
     <Compile Include="MainApp\CommonAppItems.cs" />
+    <Compile Include="WindowHeaderView.xaml.cs">
+      <DependentUpon>WindowHeaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowHeaderViewModel.cs" />
     <Page Include="Editor\EnterLinkView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="WindowHeaderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -328,6 +336,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\window_left.png" />
+    <Resource Include="Media\window_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\upper_left_fill.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

@@ -21,6 +21,7 @@ namespace Thawmadoce {
 
         private const string Title = "The awesome markdown centrifuge";
 
+        public WindowHeaderViewModel WindowHeader { get; set; }
         public MarkdownEditorViewModel Editor { get; set; }
         public AppItemsViewModel AppItems { get; set; }
         public AppDialogsViewModel AppDialogs { get; set; }

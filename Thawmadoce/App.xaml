@@ -13,6 +13,11 @@
                     <BooleanToVisibilityConverter x:Key="BoolToVis" />
                     <Converters:PathToImageSourceConverter x:Key="PathToImg" />
 
+                    
+                    <SolidColorBrush x:Key="TransparentBlack" Color="#AA000000" />
+                    <Thickness x:Key="PositioningOfAppItemButton">0,2,100,0</Thickness>
+                    <Thickness x:Key="PositioningOfEditorToolbar">0,3,110,0</Thickness>
+                    
                     <LinearGradientBrush x:Key="Blueback_Inverse" EndPoint="0,1" StartPoint="0,0">
 
                         <GradientStop Color="#FFABABAB" Offset="0"/>

@@ -12,7 +12,8 @@
                     Height="40"
                     VerticalAlignment="Top" 
                     Background="{StaticResource Blueback_Inverse}" 
-                    Visibility="{Binding ShowSelectionBar, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                    Visibility="{Binding ShowSelectionBar, Mode=OneWay, Converter={StaticResource BoolToVis}}"
+                    Margin="{StaticResource PositioningOfEditorToolbar}">
             <ItemsControl ItemsSource="{Binding SelectionCommands, Mode=OneWay}" ItemTemplate="{StaticResource SelectionCommand}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
