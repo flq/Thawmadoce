@@ -21,7 +21,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Title}" Margin="5,0,0,0" Foreground="White" FontSize="12" />
                             <Button Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource NakedButton}" Command="{Binding Close, Mode=OneWay}">
-                                <Image Source="/Thawmadoce;component/Media/dialog_close.png" />
+                                <Image Source="/Thawmadoce;component/Media/dialog_close.png" Frame:Second.Source="/Media/dialog_close2.png" />
                             </Button>
                         </Grid>
                     </Border>

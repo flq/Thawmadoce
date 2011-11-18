@@ -176,6 +176,7 @@
     <Compile Include="Frame\Messaging\UiMsgMustBeDispatched.cs" />
     <Compile Include="Frame\Messaging\UiSystemReadyUiMsg.cs" />
     <Compile Include="Frame\RelayCommand.cs" />
+    <Compile Include="Frame\Second.cs" />
     <Compile Include="Frame\StructuremapBridge.cs" />
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
     <Compile Include="Frame\UserInteraction.cs" />
@@ -346,6 +347,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\upper_left_fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\dialog_close_wdw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\dialog_close2_wdw.png" />
+    <Resource Include="Media\maximize2.png" />
+    <Resource Include="Media\minimize2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\dialog_close2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
