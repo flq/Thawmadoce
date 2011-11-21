@@ -47,22 +47,21 @@ namespace Thawmadoce.MainApp
         {
             var dlg = new SaveFileDialog { DefaultExt = ".md", Filter = FileFilter };
             SetFilenameIfAvailable(dlg);
-            var result = dlg.ShowDialog();
 
-            if (result == true)
-            {
-                _saveFile.SetSaveFile(dlg.FileName);
-                SaveText();
-                _settings.Delete("Core.TmpText");
-            }
+            var result = dlg.ShowDialog();
+            if (result != true) return;
+
+            _saveFile.SetSaveFile(dlg.FileName);
+            SaveText();
+            NotifyNewTitle();
+            _settings.Delete("Core.TmpText");
         }
 
         public void Handle(NewFileMsg msg)
         {
             _saveFile.Reset();
             _lastCapturedMarkdown = null;
-            _publisher.Publish(new NewContentForEditorUiMsg());
-            _publisher.Publish(new NewDisplayNameUiMsg());
+            ResetEditor();
         }
 
         public void Handle(NewMarkdownTaskMsg msg)
@@ -76,6 +75,17 @@ namespace Thawmadoce.MainApp
             _saveFile.SetSaveFile(fileName);
             _lastCapturedMarkdown = _saveFile.LoadFile();
             _publisher.Publish(new NewContentForEditorUiMsg(_lastCapturedMarkdown));
+            NotifyNewTitle();
+        }
+
+        private void ResetEditor()
+        {
+            _publisher.Publish(new NewContentForEditorUiMsg());
+            _publisher.Publish(new NewDisplayNameUiMsg());
+        }
+
+        private void NotifyNewTitle()
+        {
             _publisher.Publish(new NewDisplayNameUiMsg(_saveFile.FileName));
         }
 

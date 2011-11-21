@@ -4,8 +4,6 @@ using System.Windows.Input;
 using MemBus;
 using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;
-using Thawmadoce.Frame.Messaging;
-using Thawmadoce.Settings;
 
 namespace Thawmadoce.MainApp
 {
@@ -48,6 +46,7 @@ namespace Thawmadoce.MainApp
 
         private void SendInfo()
         {
+            _publisher.Publish(new NewFileMsg());
             _publisher.Publish(new NewContentForEditorUiMsg(LoadFile()));
         }
 
