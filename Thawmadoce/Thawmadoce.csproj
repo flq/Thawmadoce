@@ -144,6 +144,7 @@
     <Compile Include="Extensibility\IHasTitle.cs" />
     <Compile Include="Extensibility\IKeyboardOnlyActions.cs" />
     <Compile Include="Extensibility\IMessagePublisher.cs" />
+    <Compile Include="Extensibility\INeedRemoteControl.cs" />
     <Compile Include="Extensibility\ISaga.cs" />
     <Compile Include="Extensibility\ISelectionPlugin.cs" />
     <Compile Include="Extensibility\IVisibleCommand.cs" />
@@ -177,8 +178,8 @@
     <Compile Include="Frame\Messaging\UiSystemReadyUiMsg.cs" />
     <Compile Include="Frame\RelayCommand.cs" />
     <Compile Include="Frame\Second.cs" />
-    <Compile Include="Frame\StructuremapBridge.cs" />
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />
+    <Compile Include="Frame\ThawmadoceWindowManager.cs" />
     <Compile Include="Frame\UserInteraction.cs" />
     <Compile Include="Frame\WindowResizer.cs" />
     <Compile Include="Frame\WpfDispatchService.cs" />

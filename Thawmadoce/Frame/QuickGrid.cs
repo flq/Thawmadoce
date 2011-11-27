@@ -64,7 +64,7 @@ namespace Thawmadoce.Frame
                 g.RowDefinitions.Add(new RowDefinition { Height = gl });
         }
 
-        private class GridLengthBuilder
+        public class GridLengthBuilder
         {
             private readonly string _input;
 

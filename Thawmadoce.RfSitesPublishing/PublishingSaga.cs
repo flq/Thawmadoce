@@ -56,6 +56,34 @@ namespace Thawmadoce.RfSitesPublishing
             }
         }
 
+        public void Handle(LoadContentTaskMsg msg)
+        {
+            var req = BuildGetRequest(msg);
+            try
+            {
+                var resp = req.GetResponse();
+                string returnBody = null;
+
+                var content = resp.GetResponse();
+                var j = new JavaScriptSerializer();
+                returnBody = j.Deserialize<get>(content).body;
+
+                _publisher.Publish(new NewContentForEditorUiMsg(returnBody));
+            }
+            catch (WebException x)
+            {
+                var r = (HttpWebResponse) x.Response;
+                if (r.StatusCode == HttpStatusCode.InternalServerError)
+                {
+                    _publisher.Publish(new AlertMsg(AlertType.Warning, "500", "Server had a hiccup"));
+                }
+                else
+                {
+                    _publisher.Publish(new ExceptionMsg(x));
+                }
+            }
+        }
+
         private void HandleResponse(HttpWebResponse response)
         {
             if (response.StatusCode == HttpStatusCode.Created)
@@ -71,6 +99,14 @@ namespace Thawmadoce.RfSitesPublishing
             r.Headers.Add("X-RfSite-AdminToken", info.Token);
             r.ContentType = "application/json";
             r.Method = "POST";
+            return r;
+        }
+
+        private static HttpWebRequest BuildGetRequest(LoadContentTaskMsg id)
+        {
+            var r = (HttpWebRequest)HttpWebRequest.Create(id.Server + "/admin/" + id.Id);
+            r.Headers.Add("X-RfSite-AdminToken", id.Token);
+            r.Method = "GET";
             return r;
         }
 
@@ -93,5 +129,7 @@ namespace Thawmadoce.RfSitesPublishing
         {
             return tags.Split(',').Select(s => s.Trim()).ToArray();
         }
+
+        private class get { public string body { get; set; } }
     }
 }

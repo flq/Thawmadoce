@@ -46,7 +46,6 @@ namespace Thawmadoce.MainApp
 
         private void SendInfo()
         {
-            _publisher.Publish(new NewFileMsg());
             _publisher.Publish(new NewContentForEditorUiMsg(LoadFile()));
         }
 

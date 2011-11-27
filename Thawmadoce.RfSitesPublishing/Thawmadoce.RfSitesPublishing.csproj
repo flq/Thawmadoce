@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppMenuEntries.cs" />
+    <Compile Include="WebrequestExtensions.cs" />
+    <Compile Include="EnterIdView.xaml.cs">
+      <DependentUpon>EnterIdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EnterIdViewModel.cs" />
+    <Compile Include="LoadContentTaskMsg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -75,6 +81,10 @@
     <Resource Include="Media\archive_extract.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="EnterIdView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PublishingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

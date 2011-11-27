@@ -1,12 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using MemBus;
 using MemBus.Configurators;
 using MemBus.Subscribing;
-using StructureMap;
 using StructureMap.Configuration.DSL;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
@@ -19,7 +17,7 @@ namespace Thawmadoce.Bootstrapping
     {
         public BootstrapRegistry()
         {
-            ForSingletonOf<IWindowManager>().Use(new WindowManager());
+            ForSingletonOf<IWindowManager>().Use<ThawmadoceWindowManager>();
             ForSingletonOf<IUserInteraction>().Use<UserInteraction>();
             ForSingletonOf<ShellViewModel>().Use<ShellViewModel>();
             For<IGestureService>().Use(ctx => ctx.GetInstance<ShellViewModel>().GestureService);
@@ -56,9 +54,7 @@ namespace Thawmadoce.Bootstrapping
 
         private static IBus ConstructBus()
         {
-
-            return BusSetup.StartWith<Conservative>(
-                new IoCSupport(new StructuremapBridge(() => ObjectFactory.Container)))
+            return BusSetup.StartWith<Conservative>()
                 .Apply<FlexibleSubscribeAdapter>(c => c.ByMethodName("Handle"))
                 .Apply<PassViewModelMessagesThroughViewActivation>()
                 .Apply<UiMsgMustBeDispatched>()

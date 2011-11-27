@@ -17,12 +17,21 @@ namespace Thawmadoce.MainApp
         private readonly ISettings _settings;
         private readonly FileSaving _saveFile = new FileSaving();
         private string _lastCapturedMarkdown;
+
+        private bool _sendingNewContentMyself;
         
 
         public FileOpsSaga(IPublisher publisher, ISettings settings)
         {
             _publisher = publisher;
             _settings = settings;
+        }
+
+        public void Handle(NewContentForEditorUiMsg msg)
+        {
+            if (_sendingNewContentMyself) return;
+            _saveFile.Reset();
+            _lastCapturedMarkdown = null;
         }
 
         public void Handle(UiSystemReadyUiMsg msg)
@@ -74,14 +83,27 @@ namespace Thawmadoce.MainApp
         {
             _saveFile.SetSaveFile(fileName);
             _lastCapturedMarkdown = _saveFile.LoadFile();
-            _publisher.Publish(new NewContentForEditorUiMsg(_lastCapturedMarkdown));
+            SendNewContent(_lastCapturedMarkdown);
             NotifyNewTitle();
         }
 
         private void ResetEditor()
         {
-            _publisher.Publish(new NewContentForEditorUiMsg());
+            SendNewContent();
             _publisher.Publish(new NewDisplayNameUiMsg());
+        }
+
+        private void SendNewContent(string content = "")
+        {
+            try
+            {
+                _sendingNewContentMyself = true;
+                _publisher.Publish(new NewContentForEditorUiMsg(content));
+            }
+            finally
+            {
+                _sendingNewContentMyself = false;
+            }
         }
 
         private void NotifyNewTitle()

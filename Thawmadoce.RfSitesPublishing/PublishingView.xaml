@@ -5,6 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Thawmadoce.RfSitesPublishing" mc:Ignorable="d">
     <Grid>
         <Grid.Resources>
+            <Style x:Key="ActionButton" TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+            <LinearGradientBrush x:Key="Publish" StartPoint="0.5,0" EndPoint="0.5,1.0">
+                <GradientStop Offset="0" Color="Yellow" />
+                <GradientStop Offset="0.6" Color="YellowGreen" />
+                <GradientStop Offset="1" Color="LightGoldenrodYellow" />
+            </LinearGradientBrush>
             <DataTemplate x:Key="ServerView" DataType="{x:Type local:ServerModel}">
                 <Border Padding="5">
                     <StackPanel Orientation="Horizontal">
@@ -63,14 +72,21 @@
                 <Button x:Name="AddServer" Content="Add"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="Publish" Grid.Column="2" Margin="10" Padding="10" Content="Publish!" Foreground="White" FontWeight="Bold">
-            <Button.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1.0">
-                    <GradientStop Offset="0" Color="Yellow" />
-                    <GradientStop Offset="0.6" Color="YellowGreen" />
-                    <GradientStop Offset="1" Color="LightGoldenrodYellow" />
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <Button x:Name="Publish" 
+                    Style="{StaticResource ActionButton}" 
+                    Content="Publish!" Foreground="White" FontWeight="Bold"
+                    Background="{StaticResource Publish}">
+            </Button>
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="IdToUpdate" Style="{StaticResource ActionButton}" Content="Load for Update">
+
+                </Button>
+                <Button x:Name="Update" Style="{StaticResource ActionButton}" Content="Update">
+
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

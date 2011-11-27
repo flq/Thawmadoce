@@ -38,8 +38,8 @@ namespace Thawmadoce.Frame
         public I Run<I>(I arguments)
         {
             var vm = _container.With(arguments).GetInstance<VM>();
-            _mgr.ShowDialog(vm);
-            return arguments;
+            var result = _mgr.ShowDialog(vm);
+            return result.HasValue && result.Value ? arguments : default(I);
         }
     }
 }

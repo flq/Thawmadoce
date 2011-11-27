@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using Thawmadoce.Extensibility;
+using Thawmadoce.Frame;
 using Thawmadoce.Settings;
 using Thawmadoce.Frame.Extensions;
 using System.Linq;
@@ -14,12 +15,14 @@ namespace Thawmadoce.RfSitesPublishing
         
         private readonly ISettings _settings;
         private readonly IMessagePublisher _publisher;
+        private readonly IUserInteraction _interaction;
         private readonly ObservableCollection<ServerModel> _servers = new ObservableCollection<ServerModel>();
 
-        public PublishingViewModel(ISettings settings, IMessagePublisher publisher)
+        public PublishingViewModel(ISettings settings, IMessagePublisher publisher, IUserInteraction interaction)
         {
             _settings = settings;
             _publisher = publisher;
+            _interaction = interaction;
             PublishDate = DateTime.Today;
             Time = DateTime.UtcNow.ToShortTimeString();
             LoadStoredServers();
@@ -43,6 +46,17 @@ namespace Thawmadoce.RfSitesPublishing
 
         public ServerModel CurrentServer { get; set; }
 
+        public DateTime PublishDateTime
+        {
+            get
+            {
+                TimeSpan ts;
+                if (TimeSpan.TryParseExact(Time, "g", CultureInfo.CurrentCulture, out ts))
+                    return PublishDate + ts;
+                return PublishDate;
+            }
+        }
+
         public void AddServer()
         {
             var serverViewModel = new ServerModel { CanEdit = true};
@@ -62,15 +76,15 @@ namespace Thawmadoce.RfSitesPublishing
                                    });
         }
 
-        public DateTime PublishDateTime
+        public void IdToUpdate()
         {
-            get
-            {
-                TimeSpan ts;
-                if (TimeSpan.TryParseExact(Time, "g", CultureInfo.CurrentCulture, out ts))
-                    return PublishDate + ts;
-                return PublishDate;
-            }
+            if (CurrentServer == null) return;
+            var idArgs = new EnterIdArgs();
+            idArgs = _interaction.Dialog<EnterIdViewModel>().Run(idArgs);
+            if (idArgs == null) return;
+            idArgs.Server = CurrentServer.Address;
+            idArgs.Token = CurrentServer.Token;
+            _publisher.Publish(new LoadContentTaskMsg(idArgs));
         }
 
         private void LoadStoredServers()
