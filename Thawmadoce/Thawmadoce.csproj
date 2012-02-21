@@ -122,9 +122,7 @@
     <Compile Include="Bootstrapping\WireUpSagasToMessaging.cs" />
     <Compile Include="Editor\EditorKeyShortcuts.cs" />
     <Compile Include="Editor\EnterLinkViewModel.cs" />
-    <Compile Include="Editor\MarkdownEditor.xaml.cs">
-      <DependentUpon>MarkdownEditor.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Editor\MarkdownEditor.cs" />
     <Compile Include="Editor\MarkdownEditorViewModel.cs" />
     <Compile Include="Editor\MarkdownInputViewModel.cs" />
     <Compile Include="Editor\Messages\AppendTextUiMsg.cs" />
@@ -233,10 +231,6 @@
     </Compile>
     <Compile Include="WindowHeaderViewModel.cs" />
     <Page Include="Editor\EnterLinkView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Editor\MarkdownEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

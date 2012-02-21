@@ -5,7 +5,8 @@
         Background="Transparent"
         AllowsTransparency="False" >
     <Grid>
-        <ContentControl x:Name="WindowHeader" HorizontalAlignment="Stretch" VerticalAlignment="Top" Opacity="{StaticResource BorderOpacity}" />
+        <ContentControl x:Name="WindowHeader" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
+                        Opacity="{StaticResource BorderOpacity}" />
         <Image Source="/Media/upper_left_fill.png" Margin="0,24,0,0" Width="9" Height="9" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="{StaticResource BorderOpacity}" /> 
         <Border BorderThickness="2" 
                 BorderBrush="{StaticResource TransparentBlack}" 
@@ -22,7 +23,7 @@
                     <RowDefinition  Height="*"/>
                 </Grid.RowDefinitions>
                 <ContentControl x:Name="Editor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    <ContentControl x:Name="AppItems" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="{StaticResource PositioningOfAppItemButton}" />
+                <ContentControl x:Name="AppItems" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="{StaticResource PositioningOfAppItemButton}" />
             </Grid>
           </DockPanel>
         </Border>

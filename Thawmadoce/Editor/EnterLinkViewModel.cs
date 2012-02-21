@@ -45,7 +45,7 @@ namespace Thawmadoce.Editor
         private static string GetLink()
         {
             var txt = Clipboard.GetText();
-            if (!string.IsNullOrEmpty(txt) && txt.StartsWith("http://") && (txt.IndexOf(Environment.NewLine) == -1))
+            if (!string.IsNullOrEmpty(txt) && (txt.StartsWith("http://") || txt.StartsWith("https://")) && (txt.IndexOf(Environment.NewLine) == -1))
                 return txt;
             return null;
         }

@@ -17,8 +17,8 @@
 
                     <sys:Double x:Key="BorderOpacity">1.0</sys:Double>
                     <SolidColorBrush x:Key="TransparentBlack" Color="#FA000000" />
-                    <Thickness x:Key="PositioningOfAppItemButton">0,2,100,0</Thickness>
-                    <Thickness x:Key="PositioningOfEditorToolbar">0,3,110,0</Thickness>
+                    <Thickness x:Key="PositioningOfAppItemButton">0,7,100,0</Thickness>
+                    <Thickness x:Key="PositioningOfEditorToolbar">0,7,0,0</Thickness>
                     
                     <LinearGradientBrush x:Key="Blueback_Inverse" EndPoint="0,1" StartPoint="0,0">
 

@@ -27,7 +27,6 @@
           CurrentSelection="{Binding CurrentSelection, Mode=TwoWay}" 
           FocusCommands="{Binding RefocusEditorStream, Mode=OneWay}"
           TextAppendCommands="{Binding TextAppendStream, Mode=OneWay}"
-          Margin="2"
           HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch" />
     </Grid>

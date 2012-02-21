@@ -6,14 +6,13 @@ using Thawmadoce.MainApp;
 
 namespace Thawmadoce.Editor
 {
-    public partial class MarkdownEditor : TextBox
+    public class MarkdownEditor : TextBox
     {
         private int _lastCaretIndex;
         private bool _runningModification;
 
         public MarkdownEditor()
         {
-            InitializeComponent();
             Loaded += HandleLoaded;
             IsVisibleChanged += HandleVisibleChanged;
             SelectionChanged += HandleSelectionChanged;
