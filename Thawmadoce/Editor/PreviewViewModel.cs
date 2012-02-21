@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Navigation;
+using MemBus;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Extensions;
 using System.Reactive.Linq;
@@ -12,11 +14,13 @@ namespace Thawmadoce.Editor
 {
     public class PreviewViewModel : AbstractViewModel
     {
+        private readonly IPublisher _publisher;
         private WebBrowser _browser;
         private bool _browserCompletedLoad = true;
 
-        public PreviewViewModel(IObservable<NewHtmlMsg> newHtmlMessages, IDispatchServices svc)
+        public PreviewViewModel(IObservable<NewHtmlMsg> newHtmlMessages, IDispatchServices svc, IPublisher publisher)
         {
+            _publisher = publisher;
             newHtmlMessages
                 .Where(msg => _browserCompletedLoad)
                 .ObserveOn(svc)
@@ -47,10 +51,19 @@ namespace Thawmadoce.Editor
             browserUi
                 .IfNotNull(browser => browser as WebBrowser)
                 .IfNotNull(browser =>
-                               {
-                                   browser.LoadCompleted += HandleBrowserLoadCompleted;
-                                   _browser = browser;
-                               });
+                {
+                    browser.LoadCompleted += HandleBrowserLoadCompleted;
+                    _browser = browser;
+                    // HACK: when browser has focus, input bindings of the window are not reached
+                    // This is the preview/edit toggle command...
+                    _browser.InputBindings.Add(CreateEditpreviewToggleBinding());
+                });
+        }
+
+        private KeyBinding CreateEditpreviewToggleBinding()
+        {
+            var cmd = EditorKeyShortcuts.KeyComboToTogglePreview;
+            return new KeyBinding(new RelayCommand(() => _publisher.Publish(cmd.MessageFactory())), cmd.Keys.Key, cmd.Keys.Modifier);
         }
     }
 }
