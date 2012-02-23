@@ -16,7 +16,7 @@
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" FlowDirection="RightToLeft" >
             <Button x:Name="OK" IsDefault="True" Margin="10" Padding="10,2">OK</Button>
-            <Button x:Name="Cancel" IsCancel="True" Margin="10" Padding="10,2">Cancel</Button>
+            <Button IsCancel="True" Margin="10" Padding="10,2">Cancel</Button>
         </StackPanel>
     </Grid>
 </UserControl>

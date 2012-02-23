@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Windows;
 using Caliburn.Micro;
+using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 
 namespace Thawmadoce.Editor
 {
-    public class LinkArgs
+    public class LinkArgs : IUserCancelled
     {
         public string Link { get; set; }
-        public bool UserCanceled { get; set; }
+        public bool UserCancelled { get; set; }
     }
 
-    public class EnterLinkViewModel : AbstractViewModel, IHaveDisplayName
+    public class EnterLinkViewModel : AbstractViewModel, IHaveDisplayName, INeedRemoteControl
     {
         private readonly LinkArgs _args;
+        private IDialogRemoteControl _remoteControl;
 
         public EnterLinkViewModel(LinkArgs args)
         {
@@ -32,15 +34,20 @@ namespace Thawmadoce.Editor
 
         public void Cancel()
         {
-            _args.UserCanceled = true;
+            _args.UserCancelled = true;
         }
 
         public void OK()
         {
-            Deactivate(true);
+            _remoteControl.CloseDialog();
         }
 
         public string DisplayName { get; set; }
+
+        void INeedRemoteControl.Accept(IDialogRemoteControl remoteControl)
+        {
+            _remoteControl = remoteControl;
+        }
 
         private static string GetLink()
         {

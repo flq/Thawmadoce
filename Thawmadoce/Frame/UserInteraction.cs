@@ -35,11 +35,12 @@ namespace Thawmadoce.Frame
             _mgr.ShowDialog(vm);
         }
 
-        public I Run<I>(I arguments)
+        public I Run<I>(I arguments) where I : IUserCancelled
         {
             var vm = _container.With(arguments).GetInstance<VM>();
             var result = _mgr.ShowDialog(vm);
-            return result.HasValue && result.Value ? arguments : default(I);
+            arguments.UserCancelled = result.HasValue && !result.Value;
+            return arguments;
         }
     }
 }

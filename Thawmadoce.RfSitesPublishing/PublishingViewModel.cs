@@ -81,7 +81,8 @@ namespace Thawmadoce.RfSitesPublishing
             if (CurrentServer == null) return;
             var idArgs = new EnterIdArgs();
             idArgs = _interaction.Dialog<EnterIdViewModel>().Run(idArgs);
-            if (idArgs == null) return;
+            if (idArgs.UserCancelled) 
+                return;
             idArgs.Server = CurrentServer.Address;
             idArgs.Token = CurrentServer.Token;
             _publisher.Publish(new LoadContentTaskMsg(idArgs));

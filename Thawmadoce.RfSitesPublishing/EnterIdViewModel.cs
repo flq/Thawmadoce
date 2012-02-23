@@ -1,14 +1,15 @@
 ﻿using System;
 using Thawmadoce.Extensibility;
+using Thawmadoce.Frame;
 
 namespace Thawmadoce.RfSitesPublishing
 {
-    public class EnterIdArgs
+    public class EnterIdArgs : IUserCancelled
     {
         public string Id { get; set; }
-
         public string Server { get; set; }
         public string Token { get; set; }
+        public bool UserCancelled { get; set; }
     }
 
     public class EnterIdViewModel : INeedRemoteControl

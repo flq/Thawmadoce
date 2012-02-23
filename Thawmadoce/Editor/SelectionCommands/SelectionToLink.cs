@@ -16,7 +16,7 @@ namespace Thawmadoce.Editor.SelectionCommands
         protected override TextContext Execute()
         {
             var args = _userInteraction.Dialog<EnterLinkViewModel>().Run(new LinkArgs());
-            if (args.UserCanceled)
+            if (args.UserCancelled)
                 return TextContext;
             var nextRefId = TextContext.NextReferenceId;
             TextContext.ReplaceSelection("[{0}][{1}]", TextContext.CurrentSelection, nextRefId);
