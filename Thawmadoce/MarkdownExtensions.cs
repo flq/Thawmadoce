@@ -41,7 +41,7 @@ html, body {
 
         public static string ToHtml(this string markdowntext)
         {
-            string tx = null;
+            string tx;
             lock (_markdownDoesNotFeelThreadSafeMeThinks)
                 tx = _markdown.Transform(markdowntext);
             var sb = new StringBuilder();

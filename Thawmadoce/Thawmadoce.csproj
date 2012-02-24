@@ -151,7 +151,6 @@
     <Compile Include="Extensibility\DoActionVisibleCommand.cs" />
     <Compile Include="Extensibility\VisibleCommand.cs" />
     <Compile Include="Frame\AbstractViewModel.cs" />
-    <Compile Include="Frame\DataTemplateChoice.cs" />
     <Compile Include="Frame\Converters\DictionaryConverter.cs" />
     <Compile Include="Frame\Extensions\Observable.cs" />
     <Compile Include="Frame\Extensions\ObservableCollection.cs" />
@@ -160,9 +159,7 @@
     <Compile Include="Frame\Extensions\WpfExtensions.cs" />
     <Compile Include="Frame\FocusBehavior.cs" />
     <Compile Include="Frame\GestureService.cs" />
-    <Compile Include="Frame\Handle.cs" />
     <Compile Include="Frame\IUserInteraction.cs" />
-    <Compile Include="Frame\QuickGrid.cs" />
     <Compile Include="Frame\IDispatchServices.cs" />
     <Compile Include="Frame\IGestureService.cs" />
     <Compile Include="Frame\ItemsWithContentContainer.cs" />
@@ -362,10 +359,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
-  <UsingTask TaskName="Costura.EmbedTask" 
-        AssemblyFile="$(SolutionDir)tools\Costura.dll" />
+  <UsingTask TaskName="Costura.EmbedTask" AssemblyFile="$(SolutionDir)tools\Costura.dll" />
   <Target Name="AfterBuild">
     <Costura.EmbedTask />
   </Target>
-  
 </Project>

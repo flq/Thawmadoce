@@ -27,6 +27,6 @@
             </Grid>
           </DockPanel>
         </Border>
-        <Frame:Handle Style="{StaticResource ResizeHandle}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        <Frame:ResizeHandle Style="{StaticResource ResizeHandle}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
     </Grid>
 </Window>
