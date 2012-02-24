@@ -2,6 +2,7 @@
 using System.Configuration;
 using MemBus;
 using MemBus.Subscribing;
+using Scal.Bootstrapping;
 using Thawmadoce.Bootstrapping;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame.Extensions;
@@ -24,6 +25,11 @@ namespace Thawmadoce.Settings
             var v = SettingsSetupSaga.GetDirectoryValue();
             if (v != null)
                 _settings.As<ISettingsInitializer>(i => i.SetRoot(v.Value));
+        }
+
+        public TaskPriority Priority
+        {
+            get { return TaskPriority.Earlier; }
         }
     }
 

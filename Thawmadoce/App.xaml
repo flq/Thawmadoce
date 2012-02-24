@@ -1,19 +1,19 @@
 ﻿<Application x:Class="Thawmadoce.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-             xmlns:Thawmadoce="clr-namespace:Thawmadoce.Bootstrapping" 
-             xmlns:Converters="clr-namespace:Thawmadoce.Frame.Converters" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:local="clr-namespace:Thawmadoce.Frame">
+             xmlns:local="clr-namespace:Thawmadoce.Frame" 
+             xmlns:Bootstrapping="clr-namespace:Scal.Bootstrapping;assembly=Scal" 
+             xmlns:dyn="clr-namespace:DynamicXaml.MarkupSystem;assembly=DynamicXaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <Thawmadoce:AppBootstrapper x:Key="bootstrapper" />
+                    <Bootstrapping:ScalBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
                 <ResourceDictionary>
                     <BooleanToVisibilityConverter x:Key="BoolToVis" />
-                    <Converters:PathToImageSourceConverter x:Key="PathToImg" />
+                    <dyn:PathToImageSourceConverter x:Key="PathToImg" />
 
                     <sys:Double x:Key="BorderOpacity">1.0</sys:Double>
                     <SolidColorBrush x:Key="TransparentBlack" Color="#FA000000" />

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Caliburn.Micro;
+using DynamicXaml.MarkupSystem;
 using MemBus;
 using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;

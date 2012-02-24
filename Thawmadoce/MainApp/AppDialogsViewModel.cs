@@ -1,7 +1,8 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Caliburn.Micro;
-using Thawmadoce.Frame;
+using Scal;
+using Scal.Services;
 using Thawmadoce.Frame.Messaging;
 
 namespace Thawmadoce.MainApp

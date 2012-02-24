@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
 using Caliburn.Micro;
+using DynamicXaml.MarkupSystem;
+using Scal.Services;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Extensions;
@@ -51,9 +53,10 @@ namespace Thawmadoce.MainApp
             Dialog.As<IDeactivate>(d => d.Deactivate(close));
             CloseTrigger = true;
             PropertyChanged.Raise(this, "CloseTrigger");
+            //TODO :::
             //Woa, this stinks, but it is so incredibly painful to get the completed information from the storyboard
             //We just wait the same time and then say we are done
-            _svc.DoActionAfterPeriod(TimeSpan.FromMilliseconds(1100), CloseTriggerCompleted);
+            //_svc.DoActionAfterPeriod(TimeSpan.FromMilliseconds(1100), CloseTriggerCompleted);
         }
 
         public event EventHandler<DeactivationEventArgs> AttemptingDeactivation;

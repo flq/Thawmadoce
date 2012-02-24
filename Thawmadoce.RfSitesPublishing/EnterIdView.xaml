@@ -2,9 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:Frame="clr-namespace:Thawmadoce.Frame;assembly=Thawmadoce" 
-             mc:Ignorable="d" >
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+             FocusManager.FocusedElement="PostId">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -16,7 +15,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Label>Enter Id for an update:</Label>
-        <TextBox Grid.Column="1" Text="{Binding Args.Id}" MinWidth="100" Frame:FocusBehavior.IsFocused="True" />
+        <TextBox x:Name="PostId"  Grid.Column="1" Text="{Binding Args.Id}" MinWidth="100" />
         <Button x:Name="Load" IsDefault="True" Grid.Row="1" Grid.Column="1" Margin="0,5">Load</Button>
     </Grid>
 </UserControl>

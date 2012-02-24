@@ -1,5 +1,5 @@
 using MemBus;
-using Thawmadoce.Frame;
+using Scal;
 using Thawmadoce.Frame.Extensions;
 
 namespace Thawmadoce.Editor

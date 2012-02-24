@@ -1,5 +1,6 @@
 using System;
 using Caliburn.Micro;
+using Scal;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Messaging;

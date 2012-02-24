@@ -4,7 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
-using Thawmadoce.Frame.Extensions;
+using DynamicXaml.MarkupSystem;
+using DynamicXaml.Extensions;
 
 namespace Thawmadoce.Frame
 {
@@ -19,10 +20,7 @@ namespace Thawmadoce.Frame
 
         private void HandleLoaded(object sender, RoutedEventArgs e)
         {
-            var wdw = this.GetVisualParent<Window>();
-            if (wdw == null)
-                return; //WTF!
-            wdwR = new WindowResizer(wdw, this);
+            wdwR = this.GetVisualParent<Window>().Get(w => new WindowResizer(w, this)).MustHaveValue();
         }
     }
 

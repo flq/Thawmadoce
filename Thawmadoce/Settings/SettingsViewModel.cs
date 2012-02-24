@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using MemBus;
-using Thawmadoce.Frame;
+using Scal;
 
 namespace Thawmadoce.Settings
 {

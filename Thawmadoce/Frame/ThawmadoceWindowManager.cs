@@ -7,11 +7,11 @@ namespace Thawmadoce.Frame
 {
     public class ThawmadoceWindowManager : WindowManager
     {
-        protected override System.Windows.Window CreateWindow(object rootModel, bool isDialog, object context)
+        protected override Window EnsureWindow(object model, object view, bool isDialog)
         {
-            var wdw = base.CreateWindow(rootModel, isDialog, context);
-            if (!(rootModel is INeedRemoteControl)) return wdw;
-            return SetRemote(rootModel, wdw);
+            var wdw = base.EnsureWindow(model, view, isDialog);
+            if (!(model is INeedRemoteControl)) return wdw;
+            return SetRemote(model, wdw);
         }
 
         private static Window SetRemote(object rootModel, Window wdw)

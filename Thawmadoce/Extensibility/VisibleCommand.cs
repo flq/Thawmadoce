@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using DynamicXaml.MarkupSystem;
 using Thawmadoce.Frame;
 
 namespace Thawmadoce.Extensibility

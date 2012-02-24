@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Scal;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using System.Linq;

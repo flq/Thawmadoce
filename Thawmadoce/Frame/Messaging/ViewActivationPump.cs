@@ -1,4 +1,5 @@
 ﻿using MemBus.Publishing;
+using Scal.Services;
 using StructureMap;
 
 namespace Thawmadoce.Frame.Messaging

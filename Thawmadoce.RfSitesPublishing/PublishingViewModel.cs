@@ -93,10 +93,10 @@ namespace Thawmadoce.RfSitesPublishing
             var knownServers = _settings.Get<dynamic[]>(StoreKey);
             if (knownServers != null)
             {
-                _servers.AddRange(
-                    knownServers
+                foreach (var x in knownServers
                         .Select(o => new ServerModel(o))
-                        .Pipeline(sm => sm.Saved += HandleSaved));
+                        .Pipeline(sm => sm.Saved += HandleSaved))
+                _servers.Add(x);
             }
         }
 

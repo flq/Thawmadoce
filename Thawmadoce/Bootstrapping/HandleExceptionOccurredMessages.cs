@@ -1,10 +1,11 @@
 using System;
 using MemBus;
 using MemBus.Messages;
-using Thawmadoce.Frame;
-using Thawmadoce.Frame.Extensions;
+using Scal.Bootstrapping;
+using Scal.Services;
 using Thawmadoce.MainApp;
 using System.Reactive.Linq;
+using Scal;
 
 namespace Thawmadoce.Bootstrapping
 {
@@ -29,6 +30,11 @@ namespace Thawmadoce.Bootstrapping
         public void Run()
         {
             
+        }
+
+        public TaskPriority Priority
+        {
+            get { return TaskPriority.Later; }
         }
 
         private void HandleNextException(Exception x)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading;
 using MemBus;
+using Scal;
 using Thawmadoce.Editor.SelectionCommands;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
@@ -97,8 +98,7 @@ namespace Thawmadoce.Editor
             {
                 _commandKeysScope = new object();
 
-                SelectionCommands.ClearAndAddRange(
-                    _selectionPlugins
+                SelectionCommands.ClearAndAddRange(_selectionPlugins
                       .SelectMany(p => p.GetCommands(new TextContext(_currentSelection, _markdownText)))
                       .Pipeline(cmd => cmd.As<ISelectionCommandWireup>(w => w.AfterModificationCallback(AfterCommandModifiedSelection)))
                       .Pipeline(cmd => { if (cmd.HasKeyBinding) _gestureSvcFactory().AddKeyBinding(cmd.KeyBinding, _commandKeysScope); })

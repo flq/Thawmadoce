@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Thawmadoce.Frame.Extensions;
+using DynamicXaml.Extensions;
+using DynamicXaml.MarkupSystem;
 
 namespace Thawmadoce
 {
@@ -17,34 +18,25 @@ namespace Thawmadoce
         private void HandleCloseClick(object sender, RoutedEventArgs e)
         {
             var b = sender as DependencyObject;
-            var wdw = b.GetVisualParent<Window>();
-
-            if (wdw != null)
-                wdw.Close();
+            b.GetVisualParent<Window>().Do(wdw => wdw.Close());
         }
 
         private void OnHeaderMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var b = sender as DependencyObject;
-            var w = b.GetVisualParent<Window>();
-            if (w != null)
-                w.DragMove();
+            b.GetVisualParent<Window>().Do(wdw => wdw.DragMove());
         }
 
         private void HandleMaximizeClick(object sender, RoutedEventArgs e)
         {
             var b = sender as DependencyObject;
-            var w = b.GetVisualParent<Window>();
-            if (w != null)
-                w.WindowState = w.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
+            b.GetVisualParent<Window>().Do(w => w.WindowState = w.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal);
         }
 
         private void HandleMinimizeClick(object sender, RoutedEventArgs e)
         {
             var b = sender as DependencyObject;
-            var wdw = b.GetVisualParent<Window>();
-            if (wdw != null)
-                wdw.WindowState = WindowState.Minimized;
+            b.GetVisualParent<Window>().Do(wdw => wdw.WindowState = WindowState.Minimized);
         }
     }
 }

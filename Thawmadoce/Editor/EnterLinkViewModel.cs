@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Caliburn.Micro;
+using Scal;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 

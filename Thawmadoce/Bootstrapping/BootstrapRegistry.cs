@@ -1,14 +1,10 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using MemBus;
-using MemBus.Configurators;
-using MemBus.Subscribing;
 using StructureMap.Configuration.DSL;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
-using Thawmadoce.Frame.Messaging;
 using Thawmadoce.Settings;
 
 namespace Thawmadoce.Bootstrapping
@@ -23,43 +19,21 @@ namespace Thawmadoce.Bootstrapping
             For<IGestureService>().Use(ctx => ctx.GetInstance<ShellViewModel>().GestureService);
             Forward<ShellViewModel,IGestureService>();
 
-            For<Application>().Use(Application.Current);
-            Forward<Application,DispatcherObject>();
-            ForSingletonOf<IDispatchServices>().Use<WpfDispatchService>();
-
-            ForSingletonOf<IBus>().Use(ConstructBus);
-            For(typeof(IObservable<>)).Use(typeof(MessageObservable<>));
-            Forward<IBus, IPublisher>();
-            Forward<IBus, ISubscriber>();
-            For<IMessagePublisher>().Use(ctx => new MessagePublisher(ctx.GetInstance<IPublisher>()));
-
             ForSingletonOf<ISettings>().Use<SettingsImpl>();
+            For<IMessagePublisher>().Use(ctx => new MessagePublisher(ctx.GetInstance<IPublisher>()));
 
             Scan(s =>
             {
                 foreach (var a in AssemblyPool.ApplicationAssemblies())
                     s.Assembly(a);
                 s.IncludeNamespace("Thawmadoce");
-                s.AddAllTypesOf<IStartupTask>();
-                s.AddAllTypesOf<ISaga>();
                 s.AddAllTypesOf<ISelectionPlugin>();
                 s.AddAllTypesOf<IAppItemsPlugin>();
                 s.AddAllTypesOf<IKeyboardOnlyActions>();
-                s.Convention<HandlerRegistrationOnViewModels>();
             });
 
             SetAllProperties(c => c.TypeMatches(type => type.Name.EndsWith("ViewModel")));
             
-        }
-
-        private static IBus ConstructBus()
-        {
-            return BusSetup.StartWith<Conservative>()
-                .Apply<FlexibleSubscribeAdapter>(c => c.ByMethodName("Handle"))
-                .Apply<PassViewModelMessagesThroughViewActivation>()
-                .Apply<UiMsgMustBeDispatched>()
-                .Apply<TaskMsgIsHandledOutsideUi>()
-                .Construct();
         }
     }
 }
