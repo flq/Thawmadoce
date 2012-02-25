@@ -2,6 +2,7 @@ using System;
 using MemBus;
 using MemBus.Messages;
 using Scal.Bootstrapping;
+using Scal.Configuration;
 using Scal.Services;
 using Thawmadoce.MainApp;
 using System.Reactive.Linq;
@@ -40,6 +41,22 @@ namespace Thawmadoce.Bootstrapping
         private void HandleNextException(Exception x)
         {
             _publisher.Publish(new ActivateExceptionAppDialog(x));
+        }
+
+        public class UnhandledExceptionHandler : IExceptionHandler
+        {
+            private readonly IPublisher _publisher;
+
+            public UnhandledExceptionHandler(IPublisher publisher)
+            {
+                _publisher = publisher;
+            }
+
+            public bool ShouldTerminateApp(Exception x)
+            {
+                _publisher.Publish(new ExceptionOccurred(x));
+                return false;
+            }
         }
     }
 }

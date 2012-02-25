@@ -77,7 +77,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro">
-      <HintPath>..\packages\Scal.0.5.2.0\lib\net40\Caliburn.Micro.dll</HintPath>
+      <HintPath>..\packages\Scal.0.5.3.0\lib\net40\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="DynamicXaml">
       <HintPath>..\packages\DynamicXaml.0.6.3.0\lib\net40-Client\DynamicXaml.dll</HintPath>
@@ -92,7 +92,7 @@
       <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Scal">
-      <HintPath>..\packages\Scal.0.5.2.0\lib\net40\Scal.dll</HintPath>
+      <HintPath>..\packages\Scal.0.5.3.0\lib\net40\Scal.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
@@ -106,7 +106,7 @@
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Scal.0.5.2.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Scal.0.5.3.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -156,14 +156,12 @@
     <Compile Include="Extensibility\VisibleCommand.cs" />
     <Compile Include="Frame\Extensions\Useful.cs" />
     <Compile Include="Frame\Extensions\ViewModelExtensions.cs" />
-    <Compile Include="Frame\GestureService.cs" />
     <Compile Include="Frame\IUserInteraction.cs" />
-    <Compile Include="Frame\IGestureService.cs" />
     <Compile Include="Frame\ItemsWithContentContainer.cs" />
     <Compile Include="Frame\MessagePublisher.cs" />
     <Compile Include="Frame\Messaging\PassViewModelMessagesThroughViewActivation.cs" />
     <Compile Include="Frame\Messaging\ActivateViewModelMsg.cs" />
-    <Compile Include="Frame\Converters\MultiplicatorConverter.cs" />
+    <Compile Include="Frame\MultiplicatorConverter.cs" />
     <Compile Include="Frame\Messaging\UiSystemReadyUiMsg.cs" />
     <Compile Include="Frame\Second.cs" />
     <Compile Include="Frame\Messaging\ViewActivationPump.cs" />

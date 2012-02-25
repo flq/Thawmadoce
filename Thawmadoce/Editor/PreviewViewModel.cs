@@ -12,6 +12,7 @@ using Scal.Services;
 using Thawmadoce.Frame;
 using Thawmadoce.Frame.Extensions;
 using System.Reactive.Linq;
+using DynamicXaml.Extensions;
 
 namespace Thawmadoce.Editor
 {
@@ -51,9 +52,8 @@ namespace Thawmadoce.Editor
 
         public void BrowserLoaded(object browserUi)
         {
-            browserUi
-                .IfNotNull(browser => browser as WebBrowser)
-                .IfNotNull(browser =>
+            browserUi.ToMaybeOf<WebBrowser>()
+                .Do(browser =>
                 {
                     browser.LoadCompleted += HandleBrowserLoadCompleted;
                     _browser = browser;

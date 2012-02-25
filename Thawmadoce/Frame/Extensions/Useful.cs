@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using System.Windows;
 using System.Linq.Expressions;
 using Caliburn.Micro;
 
@@ -25,26 +24,6 @@ namespace Thawmadoce.Frame.Extensions
             if (thing != null)
                 action(thing);
             return @object;
-        }
-
-        public static IEnumerable<T> Pipeline<T>(this IEnumerable<T> items, Action<T> action)
-        {
-            foreach (var i in items)
-            {
-                action(i);
-                yield return i;
-            }
-        }
-
-        public static void IfNotNull<T>(this T item, Action<T> actionOnItem) where T : class
-        {
-            if (item != null)
-                actionOnItem(item);
-        }
-
-        public static O IfNotNull<T, O>(this T item, Func<T, O> passThroughOnItem) where T : class
-        {
-            return item != null ? passThroughOnItem(item) : default(O);
         }
 
         public static void Raise(this EventHandler @event, object sender)

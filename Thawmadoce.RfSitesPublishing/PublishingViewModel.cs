@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using DynamicXaml.Extensions;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using Thawmadoce.Settings;

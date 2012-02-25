@@ -10,7 +10,8 @@ namespace Thawmadoce.Bootstrapping
     {
         public AppConfiguration()
         {
-            AssemblyPool.AddThisAssembly();
+            AssemblyPool
+                .AddAssemblies(Bootstrapping.AssemblyPool.ApplicationAssemblies());
 
             Messaging.AddConfigurationArtefact(new PassViewModelMessagesThroughViewActivation());
             Messaging
@@ -19,6 +20,8 @@ namespace Thawmadoce.Bootstrapping
                 .TypesBeingAMessageHub(t => t.CanBeCastTo<ISaga>())
                 .TypesSubscribedToMessaging(t => t.CanBeCastTo<AbstractViewModel>());
 
+            UnhandledExceptionsPassedTo<HandleExceptionOccurredMessages.UnhandledExceptionHandler>();
+            
             StartViewModel<ShellViewModel>();
         }
     }

@@ -53,10 +53,9 @@ namespace Thawmadoce.MainApp
             Dialog.As<IDeactivate>(d => d.Deactivate(close));
             CloseTrigger = true;
             PropertyChanged.Raise(this, "CloseTrigger");
-            //TODO :::
             //Woa, this stinks, but it is so incredibly painful to get the completed information from the storyboard
             //We just wait the same time and then say we are done
-            //_svc.DoActionAfterPeriod(TimeSpan.FromMilliseconds(1100), CloseTriggerCompleted);
+            _svc.Callback(TimeSpan.FromMilliseconds(1100), CloseTriggerCompleted);
         }
 
         public event EventHandler<DeactivationEventArgs> AttemptingDeactivation;

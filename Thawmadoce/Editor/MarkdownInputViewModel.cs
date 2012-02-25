@@ -1,11 +1,12 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Threading;
+using DynamicXaml.Extensions;
 using MemBus;
 using Scal;
+using Scal.Services;
 using Thawmadoce.Editor.SelectionCommands;
 using Thawmadoce.Extensibility;
-using Thawmadoce.Frame;
 using System.Linq;
 using Thawmadoce.Frame.Extensions;
 using Thawmadoce.MainApp;

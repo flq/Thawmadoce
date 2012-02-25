@@ -1,7 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Threading;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using MemBus;
+using Scal.Services;
 using StructureMap.Configuration.DSL;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
@@ -17,7 +16,6 @@ namespace Thawmadoce.Bootstrapping
             ForSingletonOf<IUserInteraction>().Use<UserInteraction>();
             ForSingletonOf<ShellViewModel>().Use<ShellViewModel>();
             For<IGestureService>().Use(ctx => ctx.GetInstance<ShellViewModel>().GestureService);
-            Forward<ShellViewModel,IGestureService>();
 
             ForSingletonOf<ISettings>().Use<SettingsImpl>();
             For<IMessagePublisher>().Use(ctx => new MessagePublisher(ctx.GetInstance<IPublisher>()));
@@ -33,7 +31,6 @@ namespace Thawmadoce.Bootstrapping
             });
 
             SetAllProperties(c => c.TypeMatches(type => type.Name.EndsWith("ViewModel")));
-            
         }
     }
 }

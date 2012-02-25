@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using DynamicXaml.Extensions;
 using Scal;
+using Scal.Services;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame;
 using System.Linq;
