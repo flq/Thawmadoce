@@ -2,10 +2,12 @@ using System;
 using System.IO;
 using MemBus;
 using Microsoft.Win32;
+using Scal.Services;
 using Thawmadoce.Editor;
 using Thawmadoce.Extensibility;
 using Thawmadoce.Frame.Messaging;
 using Thawmadoce.Settings;
+using System.Linq;
 
 namespace Thawmadoce.MainApp
 {
@@ -15,16 +17,18 @@ namespace Thawmadoce.MainApp
 
         private readonly IPublisher _publisher;
         private readonly ISettings _settings;
+        private readonly ProgramArguments _args;
         private readonly FileSaving _saveFile = new FileSaving();
         private string _lastCapturedMarkdown;
 
         private bool _sendingNewContentMyself;
         
 
-        public FileOpsSaga(IPublisher publisher, ISettings settings)
+        public FileOpsSaga(IPublisher publisher, ISettings settings, ProgramArguments args)
         {
             _publisher = publisher;
             _settings = settings;
+            _args = args;
         }
 
         public void Handle(NewContentForEditorUiMsg msg)
@@ -36,10 +40,19 @@ namespace Thawmadoce.MainApp
 
         public void Handle(UiSystemReadyUiMsg msg)
         {
-            var s = _settings.Get<string>("Core.TmpText");
-            if (s != null)
-                _lastCapturedMarkdown = s;
-            _publisher.Publish(new NewContentForEditorUiMsg(_lastCapturedMarkdown));
+            var file = _args.FirstOrDefault();
+
+            if (file != null && File.Exists(file))
+            {
+                LoadContentsAndNotifySystems(file);
+            }
+            else
+            {
+                var s = _settings.Get<string>("Core.TmpText");
+                if (s != null)
+                    _lastCapturedMarkdown = s;
+                _publisher.Publish(new NewContentForEditorUiMsg(_lastCapturedMarkdown));
+            }
         }
 
         public void Handle(OpenFileUiMsg msg)

@@ -56,9 +56,9 @@ namespace Thawmadoce.Editor
         }
 
         public static readonly DependencyProperty FocusCommandsProperty =
-          DependencyProperty.Register("FocusCommands", typeof(IObservable<IRefocusEditor>), typeof(MarkdownEditor), new PropertyMetadata(HandleFocusCommandsChanged));
+          DependencyProperty.Register("RefocusStream", typeof(IObservable<IRefocusEditor>), typeof(MarkdownEditor), new PropertyMetadata(HandleFocusCommandsChanged));
 
-        public IObservable<IRefocusEditor> FocusCommands
+        public IObservable<IRefocusEditor> RefocusStream
         {
             get { return (IObservable<IRefocusEditor>)GetValue(FocusCommandsProperty); }
             set { SetValue(FocusCommandsProperty, value); }
@@ -74,9 +74,9 @@ namespace Thawmadoce.Editor
         }
 
         public static readonly DependencyProperty TextAppendCommandsProperty =
-          DependencyProperty.Register("TextAppendCommands", typeof(IObservable<AppendTextUiMsg>), typeof(MarkdownEditor), new PropertyMetadata(HandleTextAppendCommandsChanged));
+          DependencyProperty.Register("TextAppendStream", typeof(IObservable<AppendTextUiMsg>), typeof(MarkdownEditor), new PropertyMetadata(HandleTextAppendCommandsChanged));
 
-        public IObservable<AppendTextUiMsg> TextAppendCommands
+        public IObservable<AppendTextUiMsg> TextAppendStream
         {
             get { return (IObservable<AppendTextUiMsg>)GetValue(FocusCommandsProperty); }
             set { SetValue(FocusCommandsProperty, value); }

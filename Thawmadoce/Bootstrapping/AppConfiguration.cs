@@ -18,7 +18,8 @@ namespace Thawmadoce.Bootstrapping
                 .HandleTheseMessagesAsynchronously(msg => msg.Name.EndsWith("TaskMsg"))
                 .HandleTheseMessagesOnDispatcher(msg => msg.Name.EndsWith("UiMsg"))
                 .TypesBeingAMessageHub(t => t.CanBeCastTo<ISaga>())
-                .TypesSubscribedToMessaging(t => t.CanBeCastTo<AbstractViewModel>());
+                .TypesSubscribedToMessaging(t => t.CanBeCastTo<AbstractViewModel>())
+                .TypesSubscribedToMessaging(t => t.Name.EndsWith("ViewModel"));
 
             UnhandledExceptionsPassedTo<HandleExceptionOccurredMessages.UnhandledExceptionHandler>();
             
