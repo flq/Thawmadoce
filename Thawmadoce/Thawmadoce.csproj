@@ -77,25 +77,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro">
-      <HintPath>..\packages\Scal.0.5.4.0\lib\net40\Caliburn.Micro.dll</HintPath>
+      <HintPath>..\packages\Scal.0.5.6.0\lib\net40-client\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="DynamicXaml">
-      <HintPath>..\packages\DynamicXaml.0.6.5.0\lib\net40-Client\DynamicXaml.dll</HintPath>
+      <HintPath>..\packages\DynamicXaml.0.6.6.0\lib\net40-Client\DynamicXaml.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
     </Reference>
     <Reference Include="MemBus">
-      <HintPath>..\packages\MemBus.1.4.2\lib\net40\MemBus.dll</HintPath>
+      <HintPath>..\packages\MemBus.1.5.4\lib\net40-client\MemBus.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Scal">
-      <HintPath>..\packages\Scal.0.5.4.0\lib\net40\Scal.dll</HintPath>
+      <HintPath>..\packages\Scal.0.5.6.0\lib\net40-Client\Scal.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
+      <HintPath>..\packages\Scal.0.5.6.0\lib\net40-client\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -104,9 +104,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Rx-Main.1.0.11226\lib\Net4\System.Reactive.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Scal.0.5.4.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\Scal.0.5.6.0\lib\net40-client\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
@@ -345,6 +344,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\dialog_close2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Media\jquery.tableofcontents.min.js" />
+    <Content Include="Media\markdown.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />

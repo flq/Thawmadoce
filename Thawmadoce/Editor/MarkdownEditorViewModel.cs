@@ -1,3 +1,4 @@
+using System;
 using MemBus;
 using Scal;
 using Thawmadoce.Frame.Extensions;
@@ -25,8 +26,7 @@ namespace Thawmadoce.Editor
         public void Handle(NewMarkdownTaskMsg msg)
         {
             _lastMarkdownText = msg.MarkdownText;
-            var html = _lastMarkdownText.ToHtml();
-            _publisher.Publish(new NewHtmlMsg(html));
+            _publisher.Publish(new NewHtmlMsg(_lastMarkdownText.ToHtml()));
         }
 
         protected override void OnActivate()

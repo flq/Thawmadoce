@@ -173,7 +173,7 @@ namespace Thawmadoce.MainApp
                     using (var fs = new FileStream(HtmlFile(), FileMode.Create))
                     using (var sw = new StreamWriter(fs))
                     {
-                        sw.Write(contents.ToHtml());
+                        sw.Write(contents.ToHtml(forPreview: false));
                     }
                 }
                 return true;
