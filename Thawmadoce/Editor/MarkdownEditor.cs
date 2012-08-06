@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Caliburn.Micro;
 using Thawmadoce.MainApp;
 
 namespace Thawmadoce.Editor
@@ -16,6 +17,9 @@ namespace Thawmadoce.Editor
             Loaded += HandleLoaded;
             IsVisibleChanged += HandleVisibleChanged;
             SelectionChanged += HandleSelectionChanged;
+            //this.DeclareChangeBlock()
+            //this.GetRectFromCharacterIndex()
+            //this.LockCurrentUndoUnit();
         }
 
         public static readonly DependencyProperty CurrentSelectionProperty =
@@ -37,20 +41,18 @@ namespace Thawmadoce.Editor
 
         private void IncludeModification(string newValue)
         {
+            if (Execute.InDesignMode) return;
             _runningModification = true;
             var idxStart = SelectionStart;
-            var idxLength = SelectionLength;
             var newValueLength = newValue.Length;
-            var currentText = Text;
-
-            Clear();
-            AppendText(currentText.Substring(0,idxStart));
-            AppendText(newValue);
-            var startOfSecondHalf = idxStart + idxLength;
-            AppendText(currentText.Substring(startOfSecondHalf));
+            LockCurrentUndoUnit();
+            using (DeclareChangeBlock())
+            {
+                SelectedText = newValue;
+            }
             _runningModification = false;
             _lastCaretIndex = idxStart + newValueLength;
-            SelectedText = string.Empty;
+            Select(_lastCaretIndex, 0);
             CurrentSelection = string.Empty;
             FocusMeth();
         }
@@ -122,6 +124,8 @@ namespace Thawmadoce.Editor
                 CaretIndex = _lastCaretIndex;
             Focus();
             Keyboard.Focus(this);
+            int lineIndex = GetLineIndexFromCharacterIndex(CaretIndex);
+            ScrollToLine(lineIndex);
         }
     }
 }
