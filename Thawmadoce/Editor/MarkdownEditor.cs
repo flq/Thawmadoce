@@ -10,7 +10,7 @@ namespace Thawmadoce.Editor
     public class MarkdownEditor : TextBox
     {
         private int _lastCaretIndex;
-        private bool _runningModification;
+        private bool _runningSelectionLogic;
 
         public MarkdownEditor()
         {
@@ -36,25 +36,43 @@ namespace Thawmadoce.Editor
             var me = (MarkdownEditor)d;
             if (Equals(e.NewValue, me.SelectedText))
                 return;
-            me.IncludeModification((string)e.NewValue);
+            me.HandleNewSelection((string)e.NewValue);
         }
 
-        private void IncludeModification(string newValue)
+        private void HandleNewSelection(string newValue)
         {
             if (Execute.InDesignMode) return;
-            _runningModification = true;
-            var idxStart = SelectionStart;
-            var newValueLength = newValue.Length;
-            LockCurrentUndoUnit();
-            using (DeclareChangeBlock())
+            _runningSelectionLogic = true;
+            try
             {
-                SelectedText = newValue;
+                var potentialExistingText = Text.IndexOf(newValue, StringComparison.InvariantCulture);
+                if (potentialExistingText > -1)
+                {
+                    Select(potentialExistingText, newValue.Length);
+                    _lastCaretIndex = potentialExistingText;
+                }
+                else
+                {
+
+                    var idxStart = SelectionStart;
+                    var newValueLength = newValue.Length;
+                    LockCurrentUndoUnit();
+                    using (DeclareChangeBlock())
+                    {
+                        SelectedText = newValue;
+                    }
+                    _runningSelectionLogic = false;
+                    _lastCaretIndex = idxStart + newValueLength;
+                    Select(_lastCaretIndex, 0);
+                    CurrentSelection = string.Empty;
+                    FocusMeth();
+                }
             }
-            _runningModification = false;
-            _lastCaretIndex = idxStart + newValueLength;
-            Select(_lastCaretIndex, 0);
-            CurrentSelection = string.Empty;
-            FocusMeth();
+            finally
+            {
+                
+                _runningSelectionLogic = false;
+            }
         }
 
         public static readonly DependencyProperty FocusCommandsProperty =
@@ -113,19 +131,28 @@ namespace Thawmadoce.Editor
 
         private void HandleSelectionChanged(object sender, RoutedEventArgs e)
         {
-            if (_runningModification)
+            if (_runningSelectionLogic)
                 return;
             CurrentSelection = SelectedText;
         }
 
         private void FocusMeth()
         {
-            if (_lastCaretIndex > 0)
-                CaretIndex = _lastCaretIndex;
             Focus();
             Keyboard.Focus(this);
-            int lineIndex = GetLineIndexFromCharacterIndex(CaretIndex);
-            ScrollToLine(lineIndex);
+            if (!string.IsNullOrEmpty(SelectedText))
+            {
+                int idx = GetLineIndexFromCharacterIndex(SelectionStart);
+                ScrollToLine(idx);
+            }
+            else
+            {
+                if (_lastCaretIndex > 0)
+                    CaretIndex = _lastCaretIndex;
+
+                int lineIndex = GetLineIndexFromCharacterIndex(CaretIndex);
+                ScrollToLine(lineIndex);
+            }
         }
     }
 }

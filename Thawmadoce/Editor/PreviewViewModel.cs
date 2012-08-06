@@ -9,10 +9,9 @@ using DynamicXaml.MarkupSystem;
 using MemBus;
 using Scal;
 using Scal.Services;
-using Thawmadoce.Frame;
-using Thawmadoce.Frame.Extensions;
 using System.Reactive.Linq;
 using DynamicXaml.Extensions;
+using mshtml;
 
 namespace Thawmadoce.Editor
 {
@@ -29,6 +28,27 @@ namespace Thawmadoce.Editor
                 .Where(msg => _browserCompletedLoad)
                 .ObserveOn(svc)
                 .Subscribe(NextHtml);
+        }
+
+        public void BrowserLoaded(object browserUi)
+        {
+            browserUi.ToMaybeOf<WebBrowser>()
+                .Do(browser =>
+                        {
+                            browser.LoadCompleted += HandleBrowserLoadCompleted;
+                            _browser = browser;
+                            // HACK: when browser has focus, input bindings of the window are not reached
+                            // This is the preview/edit toggle command...
+                            _browser.InputBindings.Add(CreateEditpreviewToggleBinding());
+                        });
+        }
+
+        public string GetSelectedText()
+        {
+            return _browser.Document.ToMaybeOf<IHTMLDocument2>()
+                    .Get(d => d.selection)
+                    .Get(sel => sel.createRange() as IHTMLTxtRange)
+                    .Get(range => range.text).Value;
         }
 
         private void NextHtml(NewHtmlMsg msg)
@@ -48,19 +68,6 @@ namespace Thawmadoce.Editor
         private void HandleBrowserLoadCompleted(object sender, NavigationEventArgs e)
         {
             _browserCompletedLoad = true;
-        }
-
-        public void BrowserLoaded(object browserUi)
-        {
-            browserUi.ToMaybeOf<WebBrowser>()
-                .Do(browser =>
-                {
-                    browser.LoadCompleted += HandleBrowserLoadCompleted;
-                    _browser = browser;
-                    // HACK: when browser has focus, input bindings of the window are not reached
-                    // This is the preview/edit toggle command...
-                    _browser.InputBindings.Add(CreateEditpreviewToggleBinding());
-                });
         }
 
         private KeyBinding CreateEditpreviewToggleBinding()

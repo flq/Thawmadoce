@@ -38,8 +38,16 @@ namespace Thawmadoce.Editor
         {
             EditorVisible = !EditorVisible;
             PreviewVisible = !PreviewVisible;
+            
             NotifyOfPropertyChange(()=>EditorVisible);
             NotifyOfPropertyChange(()=>PreviewVisible);
+
+            if (!PreviewVisible)
+            {
+                var selection = Preview.GetSelectedText();
+                if (selection != null)
+                    Editor.CurrentSelection = selection;
+            }
         }
     }
 }
